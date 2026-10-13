@@ -12,7 +12,7 @@
 :root{--card:#fff;--ink:#26251f;--soft:#6b6a63;--line:#e8e4dc;--bg:#faf8f3;--tint:#f1eee6;--hi:#fbe39a}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "Hanken Grotesk",system-ui,sans-serif;-webkit-font-smoothing:antialiased;padding-bottom:84px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "Hanken Grotesk",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
 .top{padding:16px 20px;display:flex;justify-content:space-between;align-items:center;font-size:14px}
 .top b{font-weight:600}
 .lt{display:flex;align-items:center;gap:2px;background:var(--card);border-radius:8px;padding:5px 10px;box-shadow:0 1px 2px rgba(40,30,10,.06),0 4px 14px rgba(40,30,10,.08);font-size:14px;color:var(--soft)}
@@ -54,13 +54,13 @@ ol.steps li{margin-bottom:8px}
 .btn{display:block;text-align:center;background:var(--ink);color:var(--bg);text-decoration:none;font-weight:500;font-size:16px;padding:13px 18px;border-radius:10px;margin-top:10px;box-shadow:0 2px 6px rgba(0,0,0,.15)}
 .btn.ghost{background:var(--card);color:var(--ink);border:1px solid var(--line);box-shadow:none}
 .hero .btn{display:none}
-.bar{z-index:30;position:fixed;left:12px;right:12px;bottom:12px;display:flex;gap:8px;background:var(--card);padding:8px;border-radius:14px;box-shadow:0 8px 28px rgba(40,30,10,.18)}
-.bar a{flex:1;margin:0;padding:12px 10px;font-size:15px}
+.cta{display:flex;gap:8px;margin-top:14px}
+.cta .btn{flex:1;margin:0!important;display:block!important;padding:13px 10px}
 footer{padding:0 20px 30px;font-size:13px;color:var(--soft);max-width:680px;margin:0 auto}
 @media(min-width:760px){
  body{font-size:17px;padding-bottom:0}.top{max-width:720px;margin:0 auto;padding:22px 20px}
  main{padding-top:40px}h1{font-size:48px}.doodle{width:124px}.pic{width:120px;height:142px}
- .bar{display:none}.hero .btn{display:inline-block}
+ .hero .btn{display:inline-block}
  .card .btn{display:inline-block;margin-right:8px}
 }
 
@@ -129,11 +129,11 @@ details.acc summary span{transition:font-size .2s,padding .2s,background .2s,box
 details.acc summary small{transition:opacity .2s,max-width .2s,margin .2s;max-width:30px;overflow:hidden;display:inline-block}
 details.acc summary i{transition:opacity .2s}
 details.acc summary.stuck{background:transparent;align-items:flex-start;pointer-events:none}
-details.acc summary.stuck span{pointer-events:auto;position:fixed;top:13px;left:13px;font:500 14px/18px "Hanken Grotesk",sans-serif;letter-spacing:0;padding:7px 13px;border-radius:999px!important;background:var(--card);box-shadow:0 0 0 .5px rgba(40,30,10,.06),0 2px 4px rgba(40,30,10,.10),0 8px 20px rgba(40,30,10,.16)}
+details.acc summary.stuck span{pointer-events:auto;position:fixed;top:14px;left:14px;font:500 16px/20px "Hanken Grotesk",sans-serif;letter-spacing:0;padding:10px 17px;border-radius:999px!important;background:var(--card);box-shadow:0 0 0 .5px rgba(40,30,10,.06),0 2px 4px rgba(40,30,10,.10),0 8px 20px rgba(40,30,10,.16)}
 details.acc summary.stuck small{opacity:0;max-width:0;margin-right:-12px}
 details.acc summary.stuck i{opacity:0}
-.pill{width:32px;height:32px;padding:0!important;justify-content:center;top:13px!important;right:13px!important;box-shadow:0 0 0 .5px rgba(40,30,10,.06),0 2px 4px rgba(40,30,10,.10),0 8px 20px rgba(40,30,10,.16)!important;background:var(--card)!important}
-.pill .ar{font-size:15px;line-height:1}
+.pill{width:40px;height:40px;padding:0!important;justify-content:center;top:14px!important;right:14px!important;box-shadow:0 0 0 .5px rgba(40,30,10,.06),0 2px 4px rgba(40,30,10,.10),0 8px 20px rgba(40,30,10,.16)!important;background:var(--card)!important}
+.pill .ar{font-size:19px;line-height:1}
 
 @media (prefers-color-scheme:dark){:root:not([data-theme=light]){--ink:#ece8de;--soft:#a09b8e;--line:#34322c;--bg:#181714;--tint:#24221e;--card:#22211d;--hi:#6e5a1c}}
 :root[data-theme=dark]{--ink:#ece8de;--soft:#a09b8e;--line:#34322c;--bg:#181714;--tint:#24221e;--card:#22211d;--hi:#6e5a1c}
@@ -148,9 +148,6 @@ details.acc .body{overflow:hidden}
 .rv.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
 /* copy email */
-.mail{text-decoration:none;display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:14px;padding:12px 14px;border:1px dashed var(--line);border-radius:10px;font:500 15px "JetBrains Mono",monospace;color:var(--ink);background:none;width:100%;cursor:pointer;text-align:left}
-.mail .cp{font:500 13px "Hanken Grotesk",sans-serif;color:var(--soft);transition:color .2s}
-.mail.ok .cp{color:#3c7a55}
 </style></head><body><svg width="0" height="0" style="position:absolute"><filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.06" numOctaves="2" seed="4"/><feDisplacementMap in="SourceGraphic" scale="1.6"/></filter></svg>
 <div class="top"><a class="logo" href="#">areïzos<span class="tld">.com</span></a><div class="lt"><button data-lang="es" aria-pressed="true">Es</button><span>/</span><button data-lang="en" aria-pressed="false">En</button></div></div>
 <button class="pill" type="button" aria-label="Menú"><span class="ar">↑</span></button>
@@ -181,9 +178,8 @@ details.acc .body{overflow:hidden}
 </div></details>
 <details class="acc" id="c"><summary><small>04</small><span data-i="h2d"></span><i></i></summary><div class="body">
 <div class="card"><p data-i="c1"></p>
-<a class="btn" href="https://wa.me/34656310631" target="_blank" rel="noopener" data-i="w1t"></a><a class="mail" href="mailto:alex@pleko.es"><span>alex@pleko.es</span><span class="cp">→</span></a></div></div></details>
+<div class="cta"><a class="btn" href="https://wa.me/34656310631" target="_blank" rel="noopener" data-i="w1t"></a><a class="btn ghost" href="mailto:alex@pleko.es" data-i="w2t"></a></div></div></div></details>
 </main>
-<div class="bar"><a class="btn" href="https://wa.me/34656310631" target="_blank" rel="noopener" data-i="w1t"></a><a class="btn ghost" href="mailto:alex@pleko.es" data-i="w2t"></a></div>
 <footer><span>© 2026 areïzos</span><nav class="soc"><a href="https://www.linkedin.com/in/areizos">LinkedIn</a><a href="https://areizos.substack.com">Substack</a><a href="https://github.com/areizos">GitHub</a></nav></footer>
 <script>
 const T={es:{photo:"Tu retrato",h1:"Tu web y tus herramientas, <mark>en buenas manos</mark>.",lede:"Webs, SEO, herramientas e IA para personas y empresas. Yo me encargo de la parte técnica.",cta:"Cuéntame qué necesitas",cmd:"hola --es",menu:"Menú",h2a:"Servicios",
@@ -243,7 +239,7 @@ D.forEach(d=>{const sm=d.querySelector('summary'),body=d.querySelector('.body');
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
 document.querySelectorAll('ul.svc li,ol.steps li,.term,.pleko,.card').forEach((el,k)=>{el.classList.add('rv');el.style.transitionDelay=(el.matches('ul.svc li')?(k%9)*40:0)+'ms';io.observe(el)});
 // haptics on buttons
-document.querySelectorAll('.btn,.pill,.lt button,.pleko,.soc a,.mail').forEach(b=>b.addEventListener('click',buzz));
+document.querySelectorAll('.btn,.pill,.lt button,.pleko,.soc a').forEach(b=>b.addEventListener('click',buzz));
 // remember language
 document.querySelectorAll('.lt button').forEach(b=>b.addEventListener('click',()=>LS.set('lang',b.dataset.lang)));
 const L=LS.get('lang');if(L&&L!=='es')setTimeout(()=>setLang(L),0);
