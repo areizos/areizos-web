@@ -159,12 +159,10 @@ details.acc summary span{transition:font-size .25s cubic-bezier(.2,.8,.2,1)}
 ::selection{background:#fbe39a;color:#26251f}
 /* accordion anim */
 details.acc summary i:after{transition:transform .3s cubic-bezier(.2,.8,.2,1)!important}
-details.acc .body{overflow:visible}details.acc.anim .body,details.acc.closing .body{overflow:hidden}
+details.acc .body{overflow:visible}
 /* reveals */
-.rv{opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s cubic-bezier(.2,.8,.2,1)}
-.rv.in{opacity:1;transform:none}
-.pleko,.pleko.rv{transition:opacity .5s ease,transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .25s ease}
-.pleko.rv.in:hover,.pleko.rv.in:focus-visible,.pleko.rv.in:active{transform:translateY(-1px);box-shadow:0 0 0 1px var(--mint),0 0 0 5px rgba(143,246,208,.35),0 10px 30px rgba(0,101,101,.18);outline:none}
+.pleko{transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .25s ease}
+.pleko:hover,.pleko:focus-visible,.pleko:active{transform:translateY(-1px);box-shadow:0 0 0 1px var(--mint),0 0 0 5px rgba(143,246,208,.35),0 10px 30px rgba(0,101,101,.18);outline:none}
 @property --pa{syntax:"<angle>";inherits:false;initial-value:0deg}
 .pleko{position:relative}
 .pleko::before,.pleko::after{content:"";position:absolute;inset:-3px;border-radius:15px;padding:3px;pointer-events:none;opacity:0;transition:opacity .3s;
@@ -176,7 +174,7 @@ details.acc .body{overflow:visible}details.acc.anim .body,details.acc.closing .b
 .pleko .pa{display:inline-block}
 .pleko:hover .pa,.pleko:focus-visible .pa{animation:nudge 1s ease-in-out infinite}
 @keyframes nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(4px)}}
-@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.pleko .pa,.pleko::before,.pleko::after{animation:none!important}}
+@media (prefers-reduced-motion:reduce){.pleko .pa,.pleko::before,.pleko::after{animation:none!important}}
 /* copy email */
 
 /* contact buttons: same style, two hover effects to compare */
@@ -205,8 +203,8 @@ ul.svc .more{display:grid;grid-template-rows:0fr;opacity:0;transition:grid-templ
 ul.svc .more>span{overflow:hidden;font-size:15px;line-height:1.55;color:var(--ink)}
 ul.svc li.on .more{grid-template-rows:1fr;opacity:.9;margin-top:8px}
 ul.svc li.on{background:none}
-ul.svc li::after{content:"";position:absolute;inset:0;border-left:1px dotted var(--sep);border-right:1px dotted var(--sep);opacity:0;transition:opacity .3s;pointer-events:none}
-ul.svc li.on::after{opacity:1}
+
+
 ul.svc li:first-child{border-radius:12px 12px 0 0}ul.svc li:last-child{border-radius:0 0 12px 12px}
 @media (prefers-reduced-motion:reduce){ul.svc li>div,ul.svc li .i{transform:none!important}}
 
@@ -307,20 +305,11 @@ const D=[...document.querySelectorAll('details.acc')];
 function save(){LS.set('open',D.map(d=>d.open?1:0).join(''))}
 // restore open sections
 LS.set('open','');
-function closeOne(d){const body=d.querySelector('.body'),h=body.offsetHeight;d.classList.add('closing');
- body.animate([{height:h+'px',opacity:1},{height:'0px',opacity:0}],{duration:280,easing:'cubic-bezier(.2,.8,.2,1)'}).onfinish=()=>{d.open=false;d.classList.remove('closing');save()}}
 D.forEach(d=>{const sm=d.querySelector('summary'),body=d.querySelector('.body');
  sm.addEventListener('click',e=>{e.preventDefault();buzz();
   if(sm.classList.contains('stuck')){goUp();return}
-  if(reduce){if(d.open)D.forEach(x=>x.open=false);else d.open=true;save();return}
-  if(d.open){D.filter(x=>x.open).forEach(closeOne);
-  }else{d.open=true;const h=body.offsetHeight;
-   d.classList.add('anim');body.animate([{height:'0px',opacity:0},{height:h+'px',opacity:1}],{duration:320,easing:'cubic-bezier(.2,.8,.2,1)'}).onfinish=()=>d.classList.remove('anim');save();
-   d.querySelectorAll('.rv:not(.in)').forEach(io.observe.bind(io));}
+  if(d.open)D.forEach(x=>x.open=false);else d.open=true;save();
  });});
-// reveals
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
-document.querySelectorAll('ul.svc li,ol.steps li,.term,.pleko,.card').forEach((el,k)=>{el.classList.add('rv');el.style.transitionDelay=(el.matches('ul.svc li')?(k%9)*40:0)+'ms';io.observe(el)});
 // haptics on buttons
 document.querySelectorAll('.btn,.lt button,.pleko,.soc a').forEach(b=>b.addEventListener('click',buzz));
 // remember language
