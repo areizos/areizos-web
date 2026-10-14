@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Newsreader:opsz,wght@6..72,500&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--warm:rgba(240,196,150,.38);--warmb:#ead8c4;--open:#fbfaf6;--mint:#8ff6d0;--pteal:#006565;--card:#fff;--ink:#26251f;--soft:#6b6a63;--line:#e8e4dc;--bg:#faf8f3;--tint:#f1eee6;--hi:#fbe39a}
+:root{--sep:rgba(38,37,31,.28);--warm:rgba(240,196,150,.38);--warmb:#ead8c4;--open:#fbfaf6;--mint:#8ff6d0;--pteal:#006565;--card:#fff;--ink:#26251f;--soft:#6b6a63;--line:#e8e4dc;--bg:#faf8f3;--tint:#f1eee6;--hi:#fbe39a}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "Hanken Grotesk",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
@@ -152,8 +152,8 @@ summary i:before,summary i:after{transition:transform .3s cubic-bezier(.2,.8,.2,
 details.acc summary{transition:height .25s cubic-bezier(.2,.8,.2,1),box-shadow .2s}
 details.acc summary span{transition:font-size .25s cubic-bezier(.2,.8,.2,1)}
 
-@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--ink:#ece8de;--soft:#a09b8e;--line:#34322c;--bg:#181714;--tint:#24221e;--card:#22211d;--hi:#6e5a1c;--pteal:#8ff6d0;--open:#262520;--warm:rgba(200,140,80,.22);--warmb:#4a3e30}}
-:root[data-theme=dark]{--ink:#ece8de;--soft:#a09b8e;--line:#34322c;--bg:#181714;--tint:#24221e;--card:#22211d;--hi:#6e5a1c;--pteal:#8ff6d0;--open:#262520;--warm:rgba(200,140,80,.22);--warmb:#4a3e30}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--ink:#ece8de;--soft:#a09b8e;--line:#34322c;--bg:#181714;--tint:#24221e;--card:#22211d;--hi:#6e5a1c;--pteal:#8ff6d0;--open:#262520;--warm:rgba(200,140,80,.22);--warmb:#4a3e30;--sep:rgba(236,232,222,.3)}}
+:root[data-theme=dark]{--ink:#ece8de;--soft:#a09b8e;--line:#34322c;--bg:#181714;--tint:#24221e;--card:#22211d;--hi:#6e5a1c;--pteal:#8ff6d0;--open:#262520;--warm:rgba(200,140,80,.22);--warmb:#4a3e30;--sep:rgba(236,232,222,.3)}
 @media (prefers-color-scheme:dark){:root:not([data-theme=light]) .tout .p{color:#3fd0c9}:root:not([data-theme=light]) .tout .ok{color:#ff8a45}:root:not([data-theme=light]) .tld{color:#5a564d}}
 :root[data-theme=dark] .tout .p{color:#3fd0c9}:root[data-theme=dark] .tout .ok{color:#ff8a45}:root[data-theme=dark] .tld{color:#5a564d}
 ::selection{background:#fbe39a;color:#26251f}
@@ -195,7 +195,7 @@ details.acc .body{overflow:visible}details.acc.anim .body,details.acc.closing .b
 .li::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.65,0,.25,1)}
 .li .la{display:inline-block;transition:transform .3s cubic-bezier(.2,.8,.2,1)}
 .li:hover::after,.li:focus-visible::after{transform:scaleX(1)}
-.li:hover .la,.li:focus-visible .la{transform:translateX(3px)}
+.li:hover .la,.li:focus-visible .la{animation:nudge 1s ease-in-out infinite}
 /* dock magnify  */
 ul.svc li{cursor:pointer;transform-origin:left center;transition:background .3s;--m:0;position:relative;-webkit-tap-highlight-color:transparent}
 ul.svc li>div{transform:translateX(calc(var(--m)*4px));transition:transform .25s cubic-bezier(.2,.8,.2,1)}
@@ -204,9 +204,30 @@ ul.svc li b{transition:font-size .25s}
 ul.svc .more{display:grid;grid-template-rows:0fr;opacity:0;transition:grid-template-rows .4s cubic-bezier(.2,.8,.2,1),opacity .3s,margin .4s}
 ul.svc .more>span{overflow:hidden;font-size:15px;line-height:1.55;color:var(--ink)}
 ul.svc li.on .more{grid-template-rows:1fr;opacity:.9;margin-top:8px}
-ul.svc li.on{background:var(--open)}
+ul.svc li.on{background:none;box-shadow:inset 0 1px 0 var(--sep),inset 0 -1px 0 var(--sep)}
 ul.svc li:first-child{border-radius:12px 12px 0 0}ul.svc li:last-child{border-radius:0 0 12px 12px}
 @media (prefers-reduced-motion:reduce){ul.svc li>div,ul.svc li .i{transform:none!important}}
+
+/* section signatures: each plays once every time its section opens */
+ol.steps.tl{list-style:none;padding:4px 0 0;position:relative;counter-reset:st}
+ol.steps.tl li{position:relative;padding-left:42px;margin-bottom:18px;counter-increment:st}
+ol.steps.tl li:last-child{margin-bottom:4px}
+ol.steps.tl li::before{content:counter(st);position:absolute;left:0;top:1px;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font:600 12px/1 "Hanken Grotesk",sans-serif;color:var(--ink);background:var(--card);box-shadow:0 0 0 1px var(--line);transition:background .35s,color .35s,box-shadow .35s}
+ol.steps.tl::before{content:"";position:absolute;left:12.5px;top:20px;bottom:24px;width:1px;background:var(--line);transform-origin:top;transform:scaleY(var(--tl,1))}
+details.play ol.steps.tl::before{animation:tl 1.1s cubic-bezier(.65,0,.25,1) both .15s}
+@keyframes tl{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+details.play ol.steps.tl li::before{animation:dot .45s cubic-bezier(.34,1.56,.64,1) both}
+details.play ol.steps.tl li:nth-child(1)::before{animation-delay:.1s}
+details.play ol.steps.tl li:nth-child(2)::before{animation-delay:.55s}
+details.play ol.steps.tl li:nth-child(3)::before{animation-delay:1s}
+@keyframes dot{0%{transform:scale(.4);background:var(--card)}60%{transform:scale(1.12);background:var(--ink);color:var(--bg)}100%{transform:scale(1);background:var(--card);color:var(--ink)}}
+.stmt .w{display:inline-block;opacity:0;filter:blur(6px);transform:translateY(4px);animation:word .6s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes word{to{opacity:1;filter:none;transform:none}}
+details.play .cta .btn{animation:rise .6s cubic-bezier(.34,1.56,.64,1) both}
+details.play .cta .btn:nth-child(1){animation-delay:.12s}
+details.play .cta .btn:nth-child(2){animation-delay:.24s}
+@keyframes rise{from{opacity:0;transform:translateY(14px) scale(.96)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){details.play *,details.play *::before{animation:none!important}.stmt .w{opacity:1;filter:none;transform:none;animation:none}}
 </style></head><body><svg width="0" height="0" style="position:absolute"><filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.06" numOctaves="2" seed="4"/><feDisplacementMap in="SourceGraphic" scale="1.6"/></filter></svg>
 <div class="top"><a class="logo" href="#">areïzos<span class="tld">.com</span></a><div class="lt"><button data-lang="es" aria-pressed="true">Es</button><span>/</span><button data-lang="en" aria-pressed="false">En</button></div></div>
 <main>
@@ -226,10 +247,10 @@ ul.svc li:first-child{border-radius:12px 12px 0 0}ul.svc li:last-child{border-ra
  <li><span class="i" data-ic="learn"></span><div><b data-i="m9t">Formación para tu equipo</b> <span class="d" data-i="m9">Sesiones prácticas de herramientas e IA.</span><span class="more"><span data-i="x9">Sesiones prácticas con tus herramientas reales, para que el equipo gane soltura con la IA y el día a día.</span></span></div></li>
 </ul></div></details>
 <details class="acc"><summary><small>02</small><span role="heading" aria-level="2" data-i="l2">Cómo trabajo</span><i><em>↑</em></i></summary><div class="body">
-<ol class="steps"><li><b data-i="s1t">Hablamos</b>. <span data-i="s1">Me cuentas qué necesitas, sin compromiso.</span></li><li><b data-i="s2t">Te propongo algo</b>. <span data-i="s2">Corto y claro: qué, cómo y cuándo.</span></li><li><b data-i="s3t">Lo hago</b>. <span data-i="s3">Me encargo yo, o lo hacemos juntos si quieres aprender.</span></li></ol></div></details>
+<ol class="steps tl"><li><b data-i="s1t">Hablamos</b>. <span data-i="s1">Me cuentas qué necesitas, sin compromiso.</span></li><li><b data-i="s2t">Te propongo algo</b>. <span data-i="s2">Corto y claro: qué, cómo y cuándo.</span></li><li><b data-i="s3t">Lo hago</b>. <span data-i="s3">Me encargo yo, o lo hacemos juntos si quieres aprender.</span></li></ol></div></details>
 <details class="acc"><summary><small>03</small><span role="heading" aria-level="2" data-i="l3">Sobre mí</span><i><em>↑</em></i></summary><div class="body">
 <div class="term" aria-hidden="true"><div class="tbar"><i></i><i></i><i></i><span>~/areizos</span></div><div class="tout"></div></div>
-<p data-i="stmt">Más de quince años en marketing digital y tecnología.</p>
+<p data-i="stmt" class="stmt">Más de quince años en marketing digital y tecnología.</p>
 <p class="muted" data-i="a1">He trabajado en startups, empresas SaaS y tecnológicas en Londres y Barcelona, siempre entre el marketing, los datos y las herramientas.</p>
 <p class="muted" data-i="a2">Mi trabajo se basa en procesos claros, herramientas bien elegidas y soluciones que el cliente pueda mantener.</p>
 <p><a class="li" href="https://www.linkedin.com/in/areizos" target="_blank" rel="noopener" data-i="a3">Mi trayectoria completa, en LinkedIn <span class="la">→</span></a></p>
@@ -261,7 +282,7 @@ iconStyle('E');
 function upd(){
  document.querySelectorAll('details.acc').forEach(d=>{const sm=d.querySelector('summary'),a=sm.getBoundingClientRect(),b=d.getBoundingClientRect();sm.classList.toggle('stuck',d.open&&b.top<0&&b.bottom>a.height+20)})}
 addEventListener('scroll',upd,{passive:true});upd();
-window.goUp=(()=>{document.querySelectorAll('details.acc').forEach(d=>d.open=false);try{localStorage.setItem('open','0000')}catch(e){};const y=menu.getBoundingClientRect().top+scrollY-70;scrollTo({top:y,behavior:'smooth'})});})();
+window.goUp=(()=>{window.drawHL&&drawHL(700);document.querySelectorAll('details.acc').forEach(d=>d.open=false);try{localStorage.setItem('open','0000')}catch(e){};const y=menu.getBoundingClientRect().top+scrollY-70;scrollTo({top:y,behavior:'smooth'})});})();
 
 (function(){const out=document.querySelector('.tout');if(!out)return;
 const S=[['npm run build','✓ web lista en 1.2s'],['seo --audit areizos.com','✓ 0 errores · 98/100'],['ai --resume reunion.txt','✓ resumen enviado a tu email'],['git commit -m "nueva web"','✓ 1 file changed'],['echo "lorem ipsum dolor sit amet"','lorem ipsum dolor sit amet'],['sem --keywords "diseño web"','✓ 24 ideas encontradas'],['automate --form contacto --crm','✓ conectado'],['analytics --this-week','↑ 32% visitas']];
@@ -327,5 +348,12 @@ L.forEach((li,k)=>{li.addEventListener('click',()=>{
 if(fine)ul.addEventListener('mouseleave',()=>{hov=-1;q()});
 q()})();
 </script>
-<script>addEventListener('load',()=>setTimeout(()=>{const h=document.documentElement;h.classList.add('draw');setTimeout(()=>h.classList.add('drawn'),1400)},500))</script>
+<script>window.drawHL=d=>setTimeout(()=>{const h=document.documentElement;h.classList.remove('draw','drawn');void h.offsetWidth;h.classList.add('draw');setTimeout(()=>h.classList.add('drawn'),1400)},d);addEventListener('load',()=>drawHL(500))</script>
+<script>
+(function(){const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+document.querySelectorAll('details.acc').forEach(d=>d.addEventListener('toggle',()=>{
+ d.classList.remove('play');if(!d.open||reduce)return;void d.offsetWidth;d.classList.add('play');
+ const st=d.querySelector('.stmt');if(st&&!st.querySelector('.w')){st.innerHTML=st.textContent.split(' ').map((w,i)=>'<span class="w" style="animation-delay:'+(.15+i*.07).toFixed(2)+'s">'+w+'</span>').join(' ')}
+}))})();
+</script>
 </body></html>
