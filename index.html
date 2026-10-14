@@ -40,7 +40,9 @@ summary::-webkit-details-marker{display:none}
 summary small{font:500 12px "Hanken Grotesk";color:var(--soft);letter-spacing:.04em}
 summary i{margin-left:auto;align-self:center;width:28px;height:28px;border-radius:8px;background:var(--card);box-shadow:0 1px 4px rgba(40,30,10,.12);position:relative;flex:none}
 summary i:before,summary i:after{content:"";position:absolute;left:9px;top:13px;width:10px;height:2px;background:var(--ink);border-radius:1px;transition:transform .2s}
-summary i:after{transform:rotate(90deg)}
+summary i:before{transform:rotate(var(--r,0rad))}
+summary i:after{transform:rotate(calc(90deg + var(--r,0rad)))}
+details.acc summary i.spin:before,details.acc summary i.spin:after{transition:none!important}
 details[open] summary i:after{transform:rotate(0)}
 .body{padding:0 0 26px}
 p{margin:0 0 14px}
@@ -340,6 +342,17 @@ if(fine)ul.addEventListener('mouseleave',()=>{hov=-1;q()});
 q()})();
 </script>
 <script>(()=>{let t1,t2;const h=document.documentElement;window.drawHL=d=>{clearTimeout(t1);clearTimeout(t2);h.classList.remove('draw','drawn');t1=setTimeout(()=>{void h.offsetWidth;h.classList.add('draw');t2=setTimeout(()=>h.classList.add('drawn'),2500)},d)}})();addEventListener('load',()=>drawHL(1500))</script>
+<script>/* compass: the + is repelled like a magnet needle when the cursor touches its box */
+(()=>{const fine=matchMedia('(hover:hover) and (pointer:fine)'),reduce=matchMedia('(prefers-reduced-motion:reduce)'),K=25,C=4.5,V=38,Q=Math.PI/2;
+document.querySelectorAll('details.acc summary i').forEach(ic=>{let th=0,v=0,raf=0,last=0;
+ const step=t=>{const dt=Math.min(.033,(t-last)/1000);last=t;v+=(-K*Math.sin(4*th)-C*v)*dt;th+=v*dt;
+  if(Math.abs(v)<.15&&Math.abs(Math.sin(4*th))<.02){th=v=0;raf=0;ic.style.removeProperty('--r');ic.classList.remove('spin');return}
+  ic.style.setProperty('--r',th+'rad');raf=requestAnimationFrame(step)};
+ ic.addEventListener('pointerenter',e=>{if(!fine.matches||reduce.matches)return;const sm=ic.closest('summary');if(ic.closest('details').open||sm.classList.contains('stuck'))return;
+  const r=ic.getBoundingClientRect(),dx=e.clientX-r.left-r.width/2,dy=e.clientY-r.top-r.height/2;
+  let d=(Math.atan2(dy,dx)-th)%Q;if(d<0)d+=Q;if(d>Q/2)d-=Q;/* nearest arm is pushed away from the cursor */v+=(d>0?-1:1)*V;ic.classList.add('spin');if(!raf){last=performance.now();raf=requestAnimationFrame(step)}});
+ ic.closest('details').addEventListener('toggle',()=>{if(raf){cancelAnimationFrame(raf);raf=0;th=v=0;ic.style.removeProperty('--r');ic.classList.remove('spin')}});
+});})();</script>
 <script>
 (function(){const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
 document.querySelectorAll('details.acc').forEach(d=>d.addEventListener('toggle',()=>{
