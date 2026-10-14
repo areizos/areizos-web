@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Newsreader:opsz,wght@6..72,500&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--card:#fff;--ink:#26251f;--soft:#6b6a63;--line:#e8e4dc;--bg:#faf8f3;--tint:#f1eee6;--hi:#fbe39a}
+:root{--mint:#8ff6d0;--pteal:#006565;--card:#fff;--ink:#26251f;--soft:#6b6a63;--line:#e8e4dc;--bg:#faf8f3;--tint:#f1eee6;--hi:#fbe39a}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "Hanken Grotesk",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
@@ -71,9 +71,9 @@ footer{padding:0 20px 30px;font-size:13px;color:var(--soft);max-width:680px;marg
 
 .logo{font:500 24px "Newsreader",serif;letter-spacing:-.02em;color:var(--ink);text-decoration:none}
 .by{font-size:14px;color:var(--soft);margin:0 0 10px}.by b{color:var(--ink);font-weight:600}
-.pleko{display:flex;align-items:center;justify-content:space-between;gap:14px;background:var(--card);border-radius:12px;padding:16px 18px;margin-top:6px;text-decoration:none;color:var(--ink);box-shadow:0 1px 2px rgba(40,30,10,.06),0 6px 20px rgba(40,30,10,.06);border-left:4px solid var(--hi)}
+.pleko{display:flex;align-items:center;justify-content:space-between;gap:14px;background:var(--card);border-radius:12px;padding:16px 18px;margin-top:6px;text-decoration:none;color:var(--ink);box-shadow:0 1px 2px rgba(40,30,10,.06),0 6px 20px rgba(40,30,10,.06);border-left:4px solid var(--mint)}
 .pleko small{display:block;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--soft);margin-bottom:2px}
-.pleko b{flex:none;font-weight:600;white-space:nowrap}
+.pleko b{flex:none;font-weight:600;white-space:nowrap;color:var(--pteal)}
 ul.svc .i{width:30px;height:30px;display:grid;place-items:center}
 ul.svc .i svg{width:24px;height:24px}
 /* A doodle */
@@ -141,8 +141,8 @@ details.acc summary.stuck i{opacity:0}
 .pill{width:48px;height:48px;padding:0!important;justify-content:center;top:14px!important;right:14px!important;box-shadow:0 0 0 .5px rgba(40,30,10,.06),0 2px 4px rgba(40,30,10,.10),0 8px 20px rgba(40,30,10,.16)!important;background:var(--card)!important}
 .pill .ar{font-size:20px;line-height:1}
 
-@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--ink:#ece8de;--soft:#a09b8e;--line:#34322c;--bg:#181714;--tint:#24221e;--card:#22211d;--hi:#6e5a1c}}
-:root[data-theme=dark]{--ink:#ece8de;--soft:#a09b8e;--line:#34322c;--bg:#181714;--tint:#24221e;--card:#22211d;--hi:#6e5a1c}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--ink:#ece8de;--soft:#a09b8e;--line:#34322c;--bg:#181714;--tint:#24221e;--card:#22211d;--hi:#6e5a1c;--pteal:#8ff6d0}}
+:root[data-theme=dark]{--ink:#ece8de;--soft:#a09b8e;--line:#34322c;--bg:#181714;--tint:#24221e;--card:#22211d;--hi:#6e5a1c;--pteal:#8ff6d0}
 @media (prefers-color-scheme:dark){:root:not([data-theme=light]) .tout .p{color:#3fd0c9}:root:not([data-theme=light]) .tout .ok{color:#ff8a45}:root:not([data-theme=light]) .tld{color:#5a564d}}
 :root[data-theme=dark] .tout .p{color:#3fd0c9}:root[data-theme=dark] .tout .ok{color:#ff8a45}:root[data-theme=dark] .tld{color:#5a564d}
 ::selection{background:#fbe39a;color:#26251f}
@@ -152,6 +152,8 @@ details.acc .body{overflow:hidden}
 /* reveals */
 .rv{opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s cubic-bezier(.2,.8,.2,1)}
 .rv.in{opacity:1;transform:none}
+.pleko,.pleko.rv{transition:opacity .5s ease,transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .25s ease}
+.pleko.rv.in:hover,.pleko.rv.in:focus-visible,.pleko.rv.in:active{transform:translateY(-1px);box-shadow:0 0 0 1px var(--mint),0 0 0 5px rgba(143,246,208,.35),0 10px 30px rgba(0,101,101,.18);outline:none}
 @media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
 /* copy email */
 </style></head><body><svg width="0" height="0" style="position:absolute"><filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.06" numOctaves="2" seed="4"/><feDisplacementMap in="SourceGraphic" scale="1.6"/></filter></svg>
