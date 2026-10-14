@@ -118,10 +118,6 @@ ul.svc .i svg{width:24px;height:24px}
 footer{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
 .li{color:var(--ink);text-decoration:none;font-weight:500;border-bottom:1px solid var(--line);padding-bottom:1px}
 .soc{display:flex;gap:14px}.soc a{color:var(--ink);text-decoration:none;font-weight:500;border-bottom:1px solid var(--line);padding-bottom:1px}
-.pill{padding:7px 13px!important;line-height:18px;position:fixed;top:13px;right:12px;z-index:20;display:flex;align-items:center;gap:6px;font:500 14px "Hanken Grotesk",sans-serif;color:var(--ink);background:var(--card);border:0;border-radius:999px;padding:8px 14px;box-shadow:0 1px 2px rgba(40,30,10,.06),0 6px 18px rgba(40,30,10,.12);transform:translateY(-70px);opacity:0;transition:transform .3s cubic-bezier(.2,.8,.2,1),opacity .3s;cursor:pointer}
-.pill.on{transform:translateY(0);opacity:1}
-.pill .cur-s{color:var(--soft)}.pill .cur-s:empty{display:none}.pill .cur-s:after{content:"·";margin-left:6px}
-.pill .ar{font-size:13px}
 .term{background:var(--card);border-radius:12px;box-shadow:0 1px 2px rgba(40,30,10,.06),0 6px 20px rgba(40,30,10,.07);margin:0 0 20px;overflow:hidden}
 .tbar{display:flex;align-items:center;gap:6px;padding:10px 12px;border-bottom:1px solid var(--line)}
 .tbar i{width:9px;height:9px;border-radius:50%;background:#e4e0d6}
@@ -134,12 +130,14 @@ details.acc summary{position:sticky;top:0;z-index:10;background:var(--bg);margin
 details.acc summary span{transition:font-size .2s,padding .2s,background .2s,box-shadow .2s;border-radius:0 0 14px 14px}
 details.acc summary small{transition:opacity .2s,max-width .2s,margin .2s;max-width:30px;overflow:hidden;display:inline-block}
 details.acc summary i{transition:opacity .2s}
-details.acc summary.stuck{background:transparent;align-items:flex-start;pointer-events:none}
-details.acc summary.stuck span{pointer-events:auto;position:fixed;top:14px;left:14px;font:500 16px/24px "Hanken Grotesk",sans-serif;letter-spacing:0;padding:12px 20px;border-radius:999px!important;background:var(--card);box-shadow:0 0 0 .5px rgba(40,30,10,.06),0 2px 4px rgba(40,30,10,.10),0 8px 20px rgba(40,30,10,.16)}
-details.acc summary.stuck small{opacity:0;max-width:0;margin-right:-12px}
-details.acc summary.stuck i{opacity:0}
-.pill{width:48px;height:48px;padding:0!important;justify-content:center;top:14px!important;right:14px!important;box-shadow:0 0 0 .5px rgba(40,30,10,.06),0 2px 4px rgba(40,30,10,.10),0 8px 20px rgba(40,30,10,.16)!important;background:var(--card)!important}
-.pill .ar{font-size:20px;line-height:1}
+details.acc summary.stuck{height:56px;box-shadow:0 1px 0 var(--line)}
+details.acc summary.stuck span{font-size:21px}
+details.acc summary.stuck i:before,details.acc summary.stuck i:after{opacity:0}
+summary i em{position:absolute;inset:0;display:grid;place-items:center;font:500 16px/1 "Hanken Grotesk",sans-serif;font-style:normal;color:var(--ink);opacity:0;transform:translateY(4px);transition:opacity .2s,transform .25s cubic-bezier(.2,.8,.2,1)}
+details.acc summary.stuck i em{opacity:1;transform:none}
+summary i:before,summary i:after{transition:transform .3s cubic-bezier(.2,.8,.2,1),opacity .2s!important}
+details.acc summary{transition:height .25s cubic-bezier(.2,.8,.2,1),box-shadow .2s}
+details.acc summary span{transition:font-size .25s cubic-bezier(.2,.8,.2,1)}
 
 @media (prefers-color-scheme:dark){:root:not([data-theme=light]){--ink:#ece8de;--soft:#a09b8e;--line:#34322c;--bg:#181714;--tint:#24221e;--card:#22211d;--hi:#6e5a1c;--pteal:#8ff6d0}}
 :root[data-theme=dark]{--ink:#ece8de;--soft:#a09b8e;--line:#34322c;--bg:#181714;--tint:#24221e;--card:#22211d;--hi:#6e5a1c;--pteal:#8ff6d0}
@@ -191,12 +189,11 @@ details.acc .body{overflow:visible}details.acc.anim .body,details.acc.closing .b
 .li:hover .la,.li:focus-visible .la{transform:translateX(3px)}
 </style></head><body><svg width="0" height="0" style="position:absolute"><filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.06" numOctaves="2" seed="4"/><feDisplacementMap in="SourceGraphic" scale="1.6"/></filter></svg>
 <div class="top"><a class="logo" href="#">areïzos<span class="tld">.com</span></a><div class="lt"><button data-lang="es" aria-pressed="true">Es</button><span>/</span><button data-lang="en" aria-pressed="false">En</button></div></div>
-<button class="pill" type="button" aria-label="Menú"><span class="ar">↑</span></button>
 <main>
 <section class="hero" style="margin-top:0"><h1 data-i="h1">Tu web y tus herramientas, <mark>en buenas manos</mark>.</h1>
 <p class="lede" data-i="lede">Webs, SEO, herramientas e IA para personas y empresas. Yo me encargo de la parte técnica.</p>
 </section>
-<details class="acc" open><summary><small>01</small><span role="heading" aria-level="2" data-i="h2a">Servicios</span><i></i></summary><div class="body">
+<details class="acc" open><summary><small>01</small><span role="heading" aria-level="2" data-i="h2a">Servicios</span><i><em>↑</em></i></summary><div class="body">
 <ul class="svc">
  <li><span class="i" data-ic="web"></span><div><b data-i="m1t">Diseño web</b><span class="d" data-i="m1">Una web clara, rápida y fácil de mantener.</span></div></li>
  <li><span class="i" data-ic="search"></span><div><b data-i="m2t">Que te encuentren en Google</b> <span class="d" data-i="m2">SEO, Search Console y analítica que funciona.</span></div></li>
@@ -208,9 +205,9 @@ details.acc .body{overflow:visible}details.acc.anim .body,details.acc.closing .b
  <li><span class="i" data-ic="chart"></span><div><b data-i="m8t">Tus números, claros</b> <span class="d" data-i="m8">Un panel con lo que de verdad importa.</span></div></li>
  <li><span class="i" data-ic="learn"></span><div><b data-i="m9t">Formación para tu equipo</b> <span class="d" data-i="m9">Sesiones prácticas de herramientas e IA.</span></div></li>
 </ul></div></details>
-<details class="acc"><summary><small>02</small><span role="heading" aria-level="2" data-i="l2">Cómo trabajo</span><i></i></summary><div class="body">
+<details class="acc"><summary><small>02</small><span role="heading" aria-level="2" data-i="l2">Cómo trabajo</span><i><em>↑</em></i></summary><div class="body">
 <ol class="steps"><li><b data-i="s1t">Hablamos</b>. <span data-i="s1">Me cuentas qué necesitas, sin compromiso.</span></li><li><b data-i="s2t">Te propongo algo</b>. <span data-i="s2">Corto y claro: qué, cómo y cuándo.</span></li><li><b data-i="s3t">Lo hago</b>. <span data-i="s3">Me encargo yo, o lo hacemos juntos si quieres aprender.</span></li></ol></div></details>
-<details class="acc"><summary><small>03</small><span role="heading" aria-level="2" data-i="l3">Sobre mí</span><i></i></summary><div class="body">
+<details class="acc"><summary><small>03</small><span role="heading" aria-level="2" data-i="l3">Sobre mí</span><i><em>↑</em></i></summary><div class="body">
 <div class="term" aria-hidden="true"><div class="tbar"><i></i><i></i><i></i><span>~/areizos</span></div><div class="tout"></div></div>
 <p data-i="stmt">Más de quince años en marketing digital y tecnología.</p>
 <p class="muted" data-i="a1">He trabajado en startups, empresas SaaS y tecnológicas en Londres y Barcelona, siempre entre el marketing, los datos y las herramientas.</p>
@@ -218,7 +215,7 @@ details.acc .body{overflow:visible}details.acc.anim .body,details.acc.closing .b
 <p><a class="li" href="https://www.linkedin.com/in/areizos" target="_blank" rel="noopener" data-i="a3">Mi trayectoria completa, en LinkedIn <span class="la">→</span></a></p>
 <a class="pleko" href="https://pleko.es"><span><small data-i="pk0">Automatización e IA</small><span data-i="pk">Para proyectos de automatización e IA a medida, trabajo como pleko.es.</span></span><b>pleko.es <span class="pa">→</span></b></a>
 </div></details>
-<details class="acc" id="c"><summary><small>04</small><span role="heading" aria-level="2" data-i="h2d">Hablamos</span><i></i></summary><div class="body">
+<details class="acc" id="c"><summary><small>04</small><span role="heading" aria-level="2" data-i="h2d">Hablamos</span><i><em>↑</em></i></summary><div class="body">
 <div class="card"><p data-i="c1">¿No sabes muy bien qué necesitas? Escríbeme igualmente y lo vemos.</p>
 <div class="cta"><a class="btn ghost fx-fill" href="https://wa.me/34656310631" target="_blank" rel="noopener"><span data-i="w1t">WhatsApp</span></a><a class="btn ghost fx-spot" href="mailto:alex@pleko.es"><span data-i="w2t">Email</span></a></div></div></div></details>
 </main>
@@ -240,11 +237,11 @@ const EM={web:"🖥️",search:"🔍",link:"🔗",spark:"✨",clock:"☕",loop:"
 function iconStyle(k){document.body.className='ic'+k;document.querySelectorAll('[data-ic]').forEach(e=>{if(k==='E'){e.textContent=EM[e.dataset.ic]}else if(k==='C'){e.textContent=e.dataset.n}else if(!e.querySelector('svg')){e.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">'+IC[e.dataset.ic]+'</svg>'}})}
 iconStyle('E');
 
-(function(){const pill=document.querySelector('.pill'),menu=document.querySelector('details.acc');
-function upd(){const r=menu.getBoundingClientRect();pill.classList.toggle('on',r.top<-40);
+(function(){const menu=document.querySelector('details.acc');
+function upd(){
  document.querySelectorAll('details.acc').forEach(d=>{const sm=d.querySelector('summary'),a=sm.getBoundingClientRect(),b=d.getBoundingClientRect();sm.classList.toggle('stuck',d.open&&b.top<0&&b.bottom>a.height+20)})}
 addEventListener('scroll',upd,{passive:true});upd();
-pill.addEventListener('click',()=>{document.querySelectorAll('details.acc').forEach(d=>d.open=false);try{localStorage.setItem('open','0000')}catch(e){};const y=menu.getBoundingClientRect().top+scrollY-70;scrollTo({top:y,behavior:'smooth'})});})();
+window.goUp=(()=>{document.querySelectorAll('details.acc').forEach(d=>d.open=false);try{localStorage.setItem('open','0000')}catch(e){};const y=menu.getBoundingClientRect().top+scrollY-70;scrollTo({top:y,behavior:'smooth'})});})();
 
 (function(){const out=document.querySelector('.tout');if(!out)return;
 const S=[['npm run build','✓ web lista en 1.2s'],['seo --audit areizos.com','✓ 0 errores · 98/100'],['ai --resume reunion.txt','✓ resumen enviado a tu email'],['git commit -m "nueva web"','✓ 1 file changed'],['echo "lorem ipsum dolor sit amet"','lorem ipsum dolor sit amet'],['sem --keywords "diseño web"','✓ 24 ideas encontradas'],['automate --form contacto --crm','✓ conectado'],['analytics --this-week','↑ 32% visitas']];
@@ -269,6 +266,7 @@ function save(){LS.set('open',D.map(d=>d.open?1:0).join(''))}
 const o=LS.get('open');if(o&&o.length===D.length)D.forEach((d,k)=>d.open=o[k]==='1');
 D.forEach(d=>{const sm=d.querySelector('summary'),body=d.querySelector('.body');
  sm.addEventListener('click',e=>{e.preventDefault();buzz();
+  if(sm.classList.contains('stuck')){goUp();return}
   if(reduce){d.open=!d.open;save();return}
   if(d.open){const h=body.offsetHeight;d.classList.add('closing');
    body.animate([{height:h+'px',opacity:1},{height:'0px',opacity:0}],{duration:280,easing:'cubic-bezier(.2,.8,.2,1)'}).onfinish=()=>{d.open=false;d.classList.remove('closing');save()};
@@ -281,7 +279,7 @@ D.forEach(d=>{const sm=d.querySelector('summary'),body=d.querySelector('.body');
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
 document.querySelectorAll('ul.svc li,ol.steps li,.term,.pleko,.card').forEach((el,k)=>{el.classList.add('rv');el.style.transitionDelay=(el.matches('ul.svc li')?(k%9)*40:0)+'ms';io.observe(el)});
 // haptics on buttons
-document.querySelectorAll('.btn,.pill,.lt button,.pleko,.soc a').forEach(b=>b.addEventListener('click',buzz));
+document.querySelectorAll('.btn,.lt button,.pleko,.soc a').forEach(b=>b.addEventListener('click',buzz));
 // remember language
 document.querySelectorAll('.lt button').forEach(b=>b.addEventListener('click',()=>LS.set('lang',b.dataset.lang)));
 const L=LS.get('lang');if(L&&L!=='es')setTimeout(()=>setLang(L),0);
