@@ -9,6 +9,7 @@
 <meta property="og:description" content="Webs, SEO, herramientas e IA para personas y empresas.">
 <meta name="twitter:card" content="summary"><meta name="twitter:title" content="areïzos · Tu web y tus herramientas, en buenas manos"><meta name="twitter:description" content="Webs, SEO, herramientas e IA para personas y empresas.">
 <link rel="icon" href="/favicon.ico" sizes="48x48"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">
+<script>document.documentElement.classList.add("js")</script>
 <title>Alexandros Reïzos · Webs, SEO, herramientas e IA | areïzos</title>
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Person", "@id": "https://areizos.com/#person", "name": "Alexandros Reïzos", "alternateName": "Alexandros Reizos", "url": "https://areizos.com/", "jobTitle": "Consultor de marketing digital y tecnología", "email": "mailto:alex@pleko.es", "telephone": "+34656310631", "sameAs": ["https://www.linkedin.com/in/areizos", "https://areizos.substack.com", "https://github.com/areizos", "https://pleko.es"]}, {"@type": "ProfessionalService", "@id": "https://areizos.com/#service", "name": "areïzos", "url": "https://areizos.com/", "logo": "https://areizos.com/logo-square.png", "image": "https://areizos.com/logo-square.png", "description": "Alexandros Reïzos: webs, SEO, herramientas conectadas e IA para personas y pequeñas empresas. Más de quince años en marketing digital y tecnología.", "founder": {"@id": "https://areizos.com/#person"}, "email": "alex@pleko.es", "telephone": "+34656310631", "inLanguage": ["es", "en"], "knowsAbout": ["Diseño web", "SEO", "Google Search Console", "Analítica web", "Automatización", "Inteligencia artificial", "Email profesional y dominios", "CRM"]}, {"@type": "WebSite", "@id": "https://areizos.com/#website", "url": "https://areizos.com/", "name": "areïzos", "inLanguage": "es", "publisher": {"@id": "https://areizos.com/#person"}}]}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -44,7 +45,18 @@ details[open] summary i:after{transform:rotate(0)}
 .body{padding:0 0 26px}
 p{margin:0 0 14px}
 .lede{font-size:17px;color:var(--ink);opacity:.86}
-mark{background:linear-gradient(transparent 58%,var(--hi) 58%);color:inherit;padding:0 2px}
+mark{background-image:linear-gradient(transparent 58%,var(--hi) 58%);background-repeat:no-repeat;background-size:100% 100%;background-color:transparent;color:inherit;padding:0 2px}
+/* highlighter drawn by an "invisible hand": uneven speed, starts after load */
+html.js:not(.drawn) mark{background-size:0% 100%}
+html.draw:not(.drawn) mark{animation:hand 1.25s linear forwards}
+@keyframes hand{
+ 0%{background-size:0% 100%;animation-timing-function:cubic-bezier(.5,0,.8,.6)}
+ 14%{background-size:9% 100%;animation-timing-function:cubic-bezier(.3,.5,.6,1)}
+ 38%{background-size:41% 100%;animation-timing-function:cubic-bezier(.4,0,.7,.8)}
+ 52%{background-size:50% 100%;animation-timing-function:cubic-bezier(.2,.6,.5,1)}
+ 81%{background-size:88% 100%;animation-timing-function:cubic-bezier(.3,.3,.4,1)}
+ 100%{background-size:100% 100%}}
+@media (prefers-reduced-motion:reduce){html.js:not(.drawn) mark{background-size:100% 100%}html.draw mark{animation:none}}
 .muted{color:var(--soft)}
 ul.svc{list-style:none;padding:0;margin:0;background:var(--card);border-radius:12px;box-shadow:0 1px 2px rgba(40,30,10,.06),0 6px 20px rgba(40,30,10,.05)}
 ul.svc li{display:flex;gap:14px;padding:14px 16px;border-bottom:1px solid var(--line)}
@@ -315,4 +327,5 @@ L.forEach((li,k)=>{li.addEventListener('click',()=>{
 if(fine)ul.addEventListener('mouseleave',()=>{hov=-1;q()});
 q()})();
 </script>
+<script>addEventListener('load',()=>setTimeout(()=>{const h=document.documentElement;h.classList.add('draw');setTimeout(()=>h.classList.add('drawn'),1400)},500))</script>
 </body></html>
