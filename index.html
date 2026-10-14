@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Newsreader:opsz,wght@6..72,500&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--mint:#8ff6d0;--pteal:#006565;--card:#fff;--ink:#26251f;--soft:#6b6a63;--line:#e8e4dc;--bg:#faf8f3;--tint:#f1eee6;--hi:#fbe39a}
+:root{--warm:rgba(240,196,150,.38);--warmb:#ead8c4;--open:#fbfaf6;--mint:#8ff6d0;--pteal:#006565;--card:#fff;--ink:#26251f;--soft:#6b6a63;--line:#e8e4dc;--bg:#faf8f3;--tint:#f1eee6;--hi:#fbe39a}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "Hanken Grotesk",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
@@ -132,6 +132,7 @@ details.acc summary small{transition:opacity .2s,max-width .2s,margin .2s;max-wi
 details.acc summary i{transition:opacity .2s}
 details.acc summary.stuck{height:56px;box-shadow:0 1px 0 var(--line)}
 details.acc summary.stuck span{font-size:21px}
+details.acc summary.stuck small{opacity:0;max-width:0;margin-right:-12px}
 details.acc summary.stuck i:before,details.acc summary.stuck i:after{opacity:0}
 summary i em{position:absolute;inset:0;display:grid;place-items:center;font:500 16px/1 "Hanken Grotesk",sans-serif;font-style:normal;color:var(--ink);opacity:0;transform:translateY(4px);transition:opacity .2s,transform .25s cubic-bezier(.2,.8,.2,1)}
 details.acc summary.stuck i em{opacity:1;transform:none}
@@ -139,8 +140,8 @@ summary i:before,summary i:after{transition:transform .3s cubic-bezier(.2,.8,.2,
 details.acc summary{transition:height .25s cubic-bezier(.2,.8,.2,1),box-shadow .2s}
 details.acc summary span{transition:font-size .25s cubic-bezier(.2,.8,.2,1)}
 
-@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--ink:#ece8de;--soft:#a09b8e;--line:#34322c;--bg:#181714;--tint:#24221e;--card:#22211d;--hi:#6e5a1c;--pteal:#8ff6d0}}
-:root[data-theme=dark]{--ink:#ece8de;--soft:#a09b8e;--line:#34322c;--bg:#181714;--tint:#24221e;--card:#22211d;--hi:#6e5a1c;--pteal:#8ff6d0}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--ink:#ece8de;--soft:#a09b8e;--line:#34322c;--bg:#181714;--tint:#24221e;--card:#22211d;--hi:#6e5a1c;--pteal:#8ff6d0;--open:#262520;--warm:rgba(200,140,80,.22);--warmb:#4a3e30}}
+:root[data-theme=dark]{--ink:#ece8de;--soft:#a09b8e;--line:#34322c;--bg:#181714;--tint:#24221e;--card:#22211d;--hi:#6e5a1c;--pteal:#8ff6d0;--open:#262520;--warm:rgba(200,140,80,.22);--warmb:#4a3e30}
 @media (prefers-color-scheme:dark){:root:not([data-theme=light]) .tout .p{color:#3fd0c9}:root:not([data-theme=light]) .tout .ok{color:#ff8a45}:root:not([data-theme=light]) .tld{color:#5a564d}}
 :root[data-theme=dark] .tout .p{color:#3fd0c9}:root[data-theme=dark] .tout .ok{color:#ff8a45}:root[data-theme=dark] .tld{color:#5a564d}
 ::selection{background:#fbe39a;color:#26251f}
@@ -171,15 +172,11 @@ details.acc .body{overflow:visible}details.acc.anim .body,details.acc.closing .b
 .cta .btn span{position:relative;z-index:1}
 .cta .btn:hover,.cta .btn:focus-visible{transform:translateY(-2px);box-shadow:0 2px 4px rgba(40,30,10,.08),0 10px 24px rgba(40,30,10,.14)!important}
 .cta .btn:active{transform:translateY(0) scale(.98)}
-/* A: ink fills in from the left, text flips to paper */
-.fx-fill::before{content:"";position:absolute;inset:0;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.65,0,.25,1);z-index:0}
-.fx-fill:hover::before,.fx-fill:focus-visible::before,.fx-fill:active::before{transform:scaleX(1)}
-.fx-fill:hover,.fx-fill:focus-visible,.fx-fill:active{color:var(--bg)!important;border-color:var(--ink)!important}
-/* B: soft yellow spotlight follows the cursor */
-.fx-spot::before{content:"";position:absolute;inset:0;background:radial-gradient(120px circle at var(--x,50%) var(--y,50%),var(--hi),transparent 70%);opacity:0;transition:opacity .3s;z-index:0}
+/* warm spotlight follows the cursor */
+.fx-spot::before{content:"";position:absolute;inset:0;background:radial-gradient(130px circle at var(--x,50%) var(--y,50%),var(--warm),transparent 72%);opacity:0;transition:opacity .3s;z-index:0}
 .fx-spot:hover::before,.fx-spot:focus-visible::before,.fx-spot:active::before{opacity:1}
-.fx-spot:hover,.fx-spot:focus-visible{border-color:#e6cf7f!important}
-@media (prefers-reduced-motion:reduce){.cta .btn,.fx-fill::before{transition:none}}
+.fx-spot:hover,.fx-spot:focus-visible{border-color:var(--warmb)!important}
+@media (prefers-reduced-motion:reduce){.cta .btn{transition:none}}
 
 /* LinkedIn link: ink underline draws in, arrow slides */
 .li{position:relative}
@@ -195,7 +192,7 @@ ul.svc li b{transition:font-size .25s}
 ul.svc .more{display:grid;grid-template-rows:0fr;opacity:0;transition:grid-template-rows .4s cubic-bezier(.2,.8,.2,1),opacity .3s,margin .4s}
 ul.svc .more>span{overflow:hidden;font-size:15px;line-height:1.55;color:var(--ink)}
 ul.svc li.on .more{grid-template-rows:1fr;opacity:.9;margin-top:8px}
-ul.svc li.on{background:var(--tint)}
+ul.svc li.on{background:var(--open)}
 ul.svc li:first-child{border-radius:12px 12px 0 0}ul.svc li:last-child{border-radius:0 0 12px 12px}
 @media (prefers-reduced-motion:reduce){ul.svc li>div,ul.svc li .i{transform:none!important}}
 </style></head><body><svg width="0" height="0" style="position:absolute"><filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.06" numOctaves="2" seed="4"/><feDisplacementMap in="SourceGraphic" scale="1.6"/></filter></svg>
@@ -204,7 +201,7 @@ ul.svc li:first-child{border-radius:12px 12px 0 0}ul.svc li:last-child{border-ra
 <section class="hero" style="margin-top:0"><h1 data-i="h1">Tu web y tus herramientas, <mark>en buenas manos</mark>.</h1>
 <p class="lede" data-i="lede">Webs, SEO, herramientas e IA para personas y empresas. Yo me encargo de la parte técnica.</p>
 </section>
-<details class="acc" open><summary><small>01</small><span role="heading" aria-level="2" data-i="h2a">Servicios</span><i><em>↑</em></i></summary><div class="body">
+<details class="acc"><summary><small>01</small><span role="heading" aria-level="2" data-i="h2a">Servicios</span><i><em>↑</em></i></summary><div class="body">
 <ul class="svc">
  <li><span class="i" data-ic="web"></span><div><b data-i="m1t">Diseño web</b><span class="d" data-i="m1">Una web clara, rápida y fácil de mantener.</span><span class="more"><span data-i="x1">Diseño, textos y puesta en marcha, con dominio y alojamiento bien configurados. Luego te enseño a editarla, o me encargo yo de los cambios.</span></span></div></li>
  <li><span class="i" data-ic="search"></span><div><b data-i="m2t">Que te encuentren en Google</b> <span class="d" data-i="m2">SEO, Search Console y analítica que funciona.</span><span class="more"><span data-i="x2">Reviso cómo te ve Google, arreglo lo técnico y te dejo Search Console y la analítica listas para entender quién te visita.</span></span></div></li>
@@ -227,8 +224,8 @@ ul.svc li:first-child{border-radius:12px 12px 0 0}ul.svc li:last-child{border-ra
 <a class="pleko" href="https://pleko.es"><span><small data-i="pk0">Automatización e IA</small><span data-i="pk">Para proyectos de automatización e IA a medida, trabajo como pleko.es.</span></span><b>pleko.es <span class="pa">→</span></b></a>
 </div></details>
 <details class="acc" id="c"><summary><small>04</small><span role="heading" aria-level="2" data-i="h2d">Hablamos</span><i><em>↑</em></i></summary><div class="body">
-<div class="card"><p data-i="c1">¿No sabes muy bien qué necesitas? Escríbeme igualmente y lo vemos.</p>
-<div class="cta"><a class="btn ghost fx-fill" href="https://wa.me/34656310631" target="_blank" rel="noopener"><span data-i="w1t">WhatsApp</span></a><a class="btn ghost fx-spot" href="mailto:alex@pleko.es"><span data-i="w2t">Email</span></a></div></div></div></details>
+<div class="card"><p data-i="c1" style="text-align:center">¿No sabes muy bien qué necesitas? Escríbeme igualmente y lo vemos.</p>
+<div class="cta"><a class="btn ghost fx-spot" href="https://wa.me/34656310631" target="_blank" rel="noopener"><span data-i="w1t">WhatsApp</span></a><a class="btn ghost fx-spot" href="mailto:alex@pleko.es"><span data-i="w2t">Email</span></a></div></div></div></details>
 </main>
 <footer><span>© 2026 areïzos</span><nav class="soc"><a rel="me" href="https://www.linkedin.com/in/areizos">LinkedIn</a><a rel="me" href="https://areizos.substack.com">Substack</a><a rel="me" href="https://github.com/areizos">GitHub</a></nav></footer>
 <script>
@@ -274,14 +271,14 @@ const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const D=[...document.querySelectorAll('details.acc')];
 function save(){LS.set('open',D.map(d=>d.open?1:0).join(''))}
 // restore open sections
-const o=LS.get('open');if(o&&o.length===D.length)D.forEach((d,k)=>d.open=o[k]==='1');
+LS.set('open','');
+function closeOne(d){const body=d.querySelector('.body'),h=body.offsetHeight;d.classList.add('closing');
+ body.animate([{height:h+'px',opacity:1},{height:'0px',opacity:0}],{duration:280,easing:'cubic-bezier(.2,.8,.2,1)'}).onfinish=()=>{d.open=false;d.classList.remove('closing');save()}}
 D.forEach(d=>{const sm=d.querySelector('summary'),body=d.querySelector('.body');
  sm.addEventListener('click',e=>{e.preventDefault();buzz();
   if(sm.classList.contains('stuck')){goUp();return}
-  if(reduce){d.open=!d.open;save();return}
-  if(d.open){const h=body.offsetHeight;d.classList.add('closing');
-   body.animate([{height:h+'px',opacity:1},{height:'0px',opacity:0}],{duration:280,easing:'cubic-bezier(.2,.8,.2,1)'}).onfinish=()=>{d.open=false;d.classList.remove('closing');save()};
-   d.querySelector('summary i').style.setProperty('--x','1');
+  if(reduce){if(d.open)D.forEach(x=>x.open=false);else d.open=true;save();return}
+  if(d.open){D.filter(x=>x.open).forEach(closeOne);
   }else{d.open=true;const h=body.offsetHeight;
    d.classList.add('anim');body.animate([{height:'0px',opacity:0},{height:h+'px',opacity:1}],{duration:320,easing:'cubic-bezier(.2,.8,.2,1)'}).onfinish=()=>d.classList.remove('anim');save();
    d.querySelectorAll('.rv:not(.in)').forEach(io.observe.bind(io));}
@@ -292,26 +289,28 @@ document.querySelectorAll('ul.svc li,ol.steps li,.term,.pleko,.card').forEach((e
 // haptics on buttons
 document.querySelectorAll('.btn,.lt button,.pleko,.soc a').forEach(b=>b.addEventListener('click',buzz));
 // remember language
-document.querySelectorAll('.lt button').forEach(b=>b.addEventListener('click',()=>LS.set('lang',b.dataset.lang)));
-const L=LS.get('lang');if(L&&L!=='es')setTimeout(()=>setLang(L),0);
+
+
 })();
 </script><script>document.querySelectorAll('.fx-spot').forEach(b=>b.addEventListener('pointermove',e=>{const r=b.getBoundingClientRect();b.style.setProperty('--x',(e.clientX-r.left)+'px');b.style.setProperty('--y',(e.clientY-r.top)+'px')}))</script>
 <script>
 (function(){const ul=document.querySelector('ul.svc');if(!ul)return;const L=[...ul.children],det=ul.closest('details');
 const fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
-let cur=-1,pin=-1,pinY=0,hov=-1,raf=0;
-function set(n){if(n===cur)return;cur=n;L.forEach((li,k)=>li.classList.toggle('on',k===n))}
-function mag(f){L.forEach((li,k)=>{const d=Math.abs(k-f);li.style.setProperty('--m',f<0?0:d===0?1:d===1?.45:d===2?.15:0)})}
+const pins=new Set();let cur=-1,hov=-1,raf=0;
+function show(f){L.forEach((li,k)=>{li.classList.toggle('on',pins.has(k)||k===f);const d=Math.abs(k-f);li.style.setProperty('--m',f<0?0:d===0?1:d===1?.45:d===2?.15:0)})}
 function tick(){raf=0;if(!det.open)return;
- if(fine){const f=pin>=0?pin:hov;mag(f);set(f);return}
+ if(pins.size){show(-1);return}            // something pinned: auto effect pauses
+ if(fine){show(hov);return}
  const vh=innerHeight,c=vh*0.5,r=ul.getBoundingClientRect();
- if(r.bottom<0||r.top>vh){set(-1);mag(-1);return}
+ if(r.bottom<0||r.top>vh){cur=-1;show(-1);return}
  let best=-1,bd=1e9;const ds=L.map((li,k)=>{const b=li.getBoundingClientRect(),d=Math.abs((b.top+Math.min(b.height,60)/2)-c);if(d<bd){bd=d;best=k}return d});
- if(pin>=0&&Math.abs(scrollY-pinY)>120)pin=-1;
- const f=pin>=0?pin:(cur>=0&&ds[cur]<bd+40?cur:best);mag(f);set(bd<vh*0.45||pin>=0?f:-1)}
+ cur=(cur>=0&&ds[cur]<bd+40)?cur:best;show(bd<vh*0.45?cur:-1)}
 const q=()=>{if(!raf)raf=requestAnimationFrame(tick)};
-addEventListener('scroll',q,{passive:true});addEventListener('resize',q);det.addEventListener('toggle',q);
-L.forEach((li,k)=>{li.addEventListener('click',()=>{pin=pin===k?-1:k;pinY=scrollY;if(pin<0&&!fine)set(-1);q()});
+addEventListener('scroll',q,{passive:true});addEventListener('resize',q);
+det.addEventListener('toggle',()=>{if(!det.open){pins.clear();hov=-1;cur=-1;show(-1)}q()});
+L.forEach((li,k)=>{li.addEventListener('click',()=>{
+  if(pins.has(k))pins.delete(k);else{ if(!pins.size&&li.classList.contains('on')&&!fine){} pins.add(k)}
+  q()});
  if(fine)li.addEventListener('mouseenter',()=>{hov=k;q()})});
 if(fine)ul.addEventListener('mouseleave',()=>{hov=-1;q()});
 q()})();
