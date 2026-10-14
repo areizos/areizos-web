@@ -187,6 +187,17 @@ details.acc .body{overflow:visible}details.acc.anim .body,details.acc.closing .b
 .li .la{display:inline-block;transition:transform .3s cubic-bezier(.2,.8,.2,1)}
 .li:hover::after,.li:focus-visible::after{transform:scaleX(1)}
 .li:hover .la,.li:focus-visible .la{transform:translateX(3px)}
+/* dock magnify  */
+ul.svc li{cursor:pointer;transform-origin:left center;transition:background .3s;--m:0;position:relative;-webkit-tap-highlight-color:transparent}
+ul.svc li>div{transform:translateX(calc(var(--m)*4px));transition:transform .25s cubic-bezier(.2,.8,.2,1)}
+ul.svc li .i{transform:scale(calc(1 + var(--m)*.35));transition:transform .25s cubic-bezier(.2,.8,.2,1)}
+ul.svc li b{transition:font-size .25s}
+ul.svc .more{display:grid;grid-template-rows:0fr;opacity:0;transition:grid-template-rows .4s cubic-bezier(.2,.8,.2,1),opacity .3s,margin .4s}
+ul.svc .more>span{overflow:hidden;font-size:15px;line-height:1.55;color:var(--ink)}
+ul.svc li.on .more{grid-template-rows:1fr;opacity:.9;margin-top:8px}
+ul.svc li.on{background:var(--tint)}
+ul.svc li:first-child{border-radius:12px 12px 0 0}ul.svc li:last-child{border-radius:0 0 12px 12px}
+@media (prefers-reduced-motion:reduce){ul.svc li>div,ul.svc li .i{transform:none!important}}
 </style></head><body><svg width="0" height="0" style="position:absolute"><filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.06" numOctaves="2" seed="4"/><feDisplacementMap in="SourceGraphic" scale="1.6"/></filter></svg>
 <div class="top"><a class="logo" href="#">areïzos<span class="tld">.com</span></a><div class="lt"><button data-lang="es" aria-pressed="true">Es</button><span>/</span><button data-lang="en" aria-pressed="false">En</button></div></div>
 <main>
@@ -195,15 +206,15 @@ details.acc .body{overflow:visible}details.acc.anim .body,details.acc.closing .b
 </section>
 <details class="acc" open><summary><small>01</small><span role="heading" aria-level="2" data-i="h2a">Servicios</span><i><em>↑</em></i></summary><div class="body">
 <ul class="svc">
- <li><span class="i" data-ic="web"></span><div><b data-i="m1t">Diseño web</b><span class="d" data-i="m1">Una web clara, rápida y fácil de mantener.</span></div></li>
- <li><span class="i" data-ic="search"></span><div><b data-i="m2t">Que te encuentren en Google</b> <span class="d" data-i="m2">SEO, Search Console y analítica que funciona.</span></div></li>
- <li><span class="i" data-ic="link"></span><div><b data-i="m3t">Herramientas conectadas</b> <span class="d" data-i="m3">Email, calendario, formularios y CRM hablando entre sí.</span></div></li>
- <li><span class="i" data-ic="spark"></span><div><b data-i="m4t">IA que te ahorra tiempo</b> <span class="d" data-i="m4">Asistentes y automatizaciones que trabajan por ti.</span></div></li>
- <li><span class="i" data-ic="clock"></span><div><b data-i="m5t">Una hora conmigo</b> <span class="d" data-i="m5">Dudas, una segunda opinión o una revisión.</span></div></li>
- <li><span class="i" data-ic="loop"></span><div><b data-i="m6t">Ayuda continua</b> <span class="d" data-i="m6">Una sesión al mes y me escribes cuando te atasques.</span></div></li>
- <li><span class="i" data-ic="mail"></span><div><b data-i="m7t">Dominio y email profesional</b> <span class="d" data-i="m7">Tu dominio y un email con tu nombre, bien configurado.</span></div></li>
- <li><span class="i" data-ic="chart"></span><div><b data-i="m8t">Tus números, claros</b> <span class="d" data-i="m8">Un panel con lo que de verdad importa.</span></div></li>
- <li><span class="i" data-ic="learn"></span><div><b data-i="m9t">Formación para tu equipo</b> <span class="d" data-i="m9">Sesiones prácticas de herramientas e IA.</span></div></li>
+ <li><span class="i" data-ic="web"></span><div><b data-i="m1t">Diseño web</b><span class="d" data-i="m1">Una web clara, rápida y fácil de mantener.</span><span class="more"><span data-i="x1">Diseño, textos y puesta en marcha, con dominio y alojamiento bien configurados. Luego te enseño a editarla, o me encargo yo de los cambios.</span></span></div></li>
+ <li><span class="i" data-ic="search"></span><div><b data-i="m2t">Que te encuentren en Google</b> <span class="d" data-i="m2">SEO, Search Console y analítica que funciona.</span><span class="more"><span data-i="x2">Reviso cómo te ve Google, arreglo lo técnico y te dejo Search Console y la analítica listas para entender quién te visita.</span></span></div></li>
+ <li><span class="i" data-ic="link"></span><div><b data-i="m3t">Herramientas conectadas</b> <span class="d" data-i="m3">Email, calendario, formularios y CRM hablando entre sí.</span><span class="more"><span data-i="x3">Conecto lo que ya usas para que los datos no se copien a mano: un formulario que llega al CRM, una reserva que aparece en el calendario.</span></span></div></li>
+ <li><span class="i" data-ic="spark"></span><div><b data-i="m4t">IA que te ahorra tiempo</b> <span class="d" data-i="m4">Asistentes y automatizaciones que trabajan por ti.</span><span class="more"><span data-i="x4">Asistentes que responden lo de siempre, resúmenes automáticos y tareas repetitivas que dejan de ser tuyas.</span></span></div></li>
+ <li><span class="i" data-ic="clock"></span><div><b data-i="m5t">Una hora conmigo</b> <span class="d" data-i="m5">Dudas, una segunda opinión o una revisión.</span><span class="more"><span data-i="x5">Una videollamada para resolver dudas concretas, revisar tu web o decidir qué herramienta te conviene.</span></span></div></li>
+ <li><span class="i" data-ic="loop"></span><div><b data-i="m6t">Ayuda continua</b> <span class="d" data-i="m6">Una sesión al mes y me escribes cuando te atasques.</span><span class="more"><span data-i="x6">Una sesión mensual para revisar lo que hay y avanzar, y un canal directo para las urgencias del día a día.</span></span></div></li>
+ <li><span class="i" data-ic="mail"></span><div><b data-i="m7t">Dominio y email profesional</b> <span class="d" data-i="m7">Tu dominio y un email con tu nombre, bien configurado.</span><span class="more"><span data-i="x7">Compro o traslado tu dominio y configuro el email con tu nombre para que llegue a la bandeja de entrada, no a spam.</span></span></div></li>
+ <li><span class="i" data-ic="chart"></span><div><b data-i="m8t">Tus números, claros</b> <span class="d" data-i="m8">Un panel con lo que de verdad importa.</span><span class="more"><span data-i="x8">Un panel sencillo con ventas, visitas o lo que importe en tu caso, actualizado solo y fácil de leer.</span></span></div></li>
+ <li><span class="i" data-ic="learn"></span><div><b data-i="m9t">Formación para tu equipo</b> <span class="d" data-i="m9">Sesiones prácticas de herramientas e IA.</span><span class="more"><span data-i="x9">Sesiones prácticas con tus herramientas reales, para que el equipo gane soltura con la IA y el día a día.</span></span></div></li>
 </ul></div></details>
 <details class="acc"><summary><small>02</small><span role="heading" aria-level="2" data-i="l2">Cómo trabajo</span><i><em>↑</em></i></summary><div class="body">
 <ol class="steps"><li><b data-i="s1t">Hablamos</b>. <span data-i="s1">Me cuentas qué necesitas, sin compromiso.</span></li><li><b data-i="s2t">Te propongo algo</b>. <span data-i="s2">Corto y claro: qué, cómo y cuándo.</span></li><li><b data-i="s3t">Lo hago</b>. <span data-i="s3">Me encargo yo, o lo hacemos juntos si quieres aprender.</span></li></ol></div></details>
@@ -225,12 +236,12 @@ const T={es:{photo:"Tu retrato",h1:"Tu web y tus herramientas, <mark>en buenas m
 m1t:"Diseño web",m1:"Una web clara, rápida y fácil de mantener.",m2t:"Que te encuentren en Google",m2:"SEO, Search Console y analítica que funciona.",m3t:"Herramientas conectadas",m3:"Email, calendario, formularios y CRM hablando entre sí.",m4t:"IA que te ahorra tiempo",m4:"Asistentes y automatizaciones que trabajan por ti.",m5t:"Una hora conmigo",m5:"Dudas, una segunda opinión o una revisión.",m6t:"Ayuda continua",m6:"Una sesión al mes y me escribes cuando te atasques.",m7t:"Dominio y email profesional",m7:"Tu dominio y un email con tu nombre, bien configurado.",m8t:"Tus números, claros",m8:"Un panel con lo que de verdad importa.",m9t:"Formación para tu equipo",m9:"Sesiones prácticas de herramientas e IA.",
 l2:"Cómo trabajo",s1t:"Hablamos",s1:"Me cuentas qué necesitas, sin compromiso.",s2t:"Te propongo algo",s2:"Corto y claro: qué, cómo y cuándo.",s3t:"Lo hago",s3:"Me encargo yo, o lo hacemos juntos si quieres aprender.",
 l3:"Sobre mí",stmt:"Más de quince años en marketing digital y tecnología.",a1:"He trabajado en startups, empresas SaaS y tecnológicas en Londres y Barcelona, siempre entre el marketing, los datos y las herramientas.",a2:"Mi trabajo se basa en procesos claros, herramientas bien elegidas y soluciones que el cliente pueda mantener.",a3:"Mi trayectoria completa, en LinkedIn <span class=\"la\">→</span>",by:"Marketing digital y tecnología",pk0:"Automatización e IA",pk:"Para proyectos de automatización e IA a medida, trabajo como pleko.es.",q:"Me gusta que la tecnología trabaje para las personas, no al revés.",
-h2d:"Hablamos",c1:"¿No sabes muy bien qué necesitas? Escríbeme igualmente y lo vemos.",w1t:"WhatsApp",w2t:"Email"},
+h2d:"Hablamos",x1:"Diseño, textos y puesta en marcha, con dominio y alojamiento bien configurados. Luego te enseño a editarla, o me encargo yo de los cambios.",x2:"Reviso cómo te ve Google, arreglo lo técnico y te dejo Search Console y la analítica listas para entender quién te visita.",x3:"Conecto lo que ya usas para que los datos no se copien a mano: un formulario que llega al CRM, una reserva que aparece en el calendario.",x4:"Asistentes que responden lo de siempre, resúmenes automáticos y tareas repetitivas que dejan de ser tuyas.",x5:"Una videollamada para resolver dudas concretas, revisar tu web o decidir qué herramienta te conviene.",x6:"Una sesión mensual para revisar lo que hay y avanzar, y un canal directo para las urgencias del día a día.",x7:"Compro o traslado tu dominio y configuro el email con tu nombre para que llegue a la bandeja de entrada, no a spam.",x8:"Un panel sencillo con ventas, visitas o lo que importe en tu caso, actualizado solo y fácil de leer.",x9:"Sesiones prácticas con tus herramientas reales, para que el equipo gane soltura con la IA y el día a día.",c1:"¿No sabes muy bien qué necesitas? Escríbeme igualmente y lo vemos.",w1t:"WhatsApp",w2t:"Email"},
 en:{photo:"Your portrait",h1:"Your website and your tools, <mark>in good hands</mark>.",lede:"Websites, SEO, tools and AI for people and companies. I take care of the technical side.",cta:"Tell me what you need",cmd:"hello --en",menu:"Menu",h2a:"Services",
 m1t:"Websites",m1:"A clear, fast site that's easy to keep up.",m2t:"Getting found on Google",m2:"SEO, Search Console and analytics that work.",m3t:"Tools, connected",m3:"Email, calendar, forms and CRM talking to each other.",m4t:"AI that saves you time",m4:"Assistants and automations that work for you.",m5t:"An hour with me",m5:"Questions, a second opinion or a review.",m6t:"Ongoing help",m6:"A monthly session, and message me when you get stuck.",m7t:"Domain and business email",m7:"Your domain and an email with your name, set up properly.",m8t:"Your numbers, clear",m8:"A dashboard with what really matters.",m9t:"Training for your team",m9:"Hands-on sessions on tools and AI.",
 l2:"How I work",s1t:"We talk",s1:"You tell me what you need, no strings attached.",s2t:"I send a proposal",s2:"Short and clear: what, how and when.",s3t:"I get it done",s3:"I do it for you, or we do it together if you want to learn.",
 l3:"About",stmt:"Over fifteen years in digital marketing and technology.",a1:"I have worked in startups, SaaS and technology companies in London and Barcelona, always between marketing, data and tools.",a2:"My work is built on clear processes, well-chosen tools and solutions clients can maintain themselves.",a3:"My full background is on LinkedIn <span class=\"la\">→</span>",by:"Digital marketing and technology",pk0:"Automation and AI",pk:"For custom automation and AI projects, I work as pleko.es.",q:"I like technology that works for people, not the other way round.",
-h2d:"Let's talk",c1:"Not sure what you need? Write to me anyway and we'll work it out.",w1t:"WhatsApp",w2t:"Email"}};
+h2d:"Let's talk",x1:"Design, copy and launch, with domain and hosting set up properly. Then I show you how to edit it, or I handle the changes.",x2:"I check how Google sees you, fix the technical side and set up Search Console and analytics so you know who visits.",x3:"I connect the tools you already use so nothing is copied by hand: a form that lands in the CRM, a booking that shows up in your calendar.",x4:"Assistants that answer the usual questions, automatic summaries and repetitive tasks that stop being yours.",x5:"A video call to solve specific questions, review your site or choose the right tool.",x6:"A monthly session to review and move forward, plus a direct line for day-to-day urgencies.",x7:"I buy or move your domain and set up email with your name so it lands in the inbox, not in spam.",x8:"A simple dashboard with sales, visits or whatever matters to you, updated automatically and easy to read.",x9:"Hands-on sessions with your real tools, so your team gets comfortable with AI and everyday software.",c1:"Not sure what you need? Write to me anyway and we'll work it out.",w1t:"WhatsApp",w2t:"Email"}};
 const IC={"web": "<rect x=\"3\" y=\"5\" width=\"18\" height=\"14\" rx=\"2\"/><path d=\"M3 9h18M6 7h.01M8.5 7h.01\"/>", "search": "<circle cx=\"10.5\" cy=\"10.5\" r=\"6\"/><path d=\"M15 15l5.5 5.5\"/>", "link": "<circle cx=\"6\" cy=\"12\" r=\"2.5\"/><circle cx=\"18\" cy=\"6\" r=\"2.5\"/><circle cx=\"18\" cy=\"18\" r=\"2.5\"/><path d=\"M8.2 10.9l7.6-3.8M8.2 13.1l7.6 3.8\"/>", "spark": "<path d=\"M12 3l1.8 7.2L21 12l-7.2 1.8L12 21l-1.8-7.2L3 12l7.2-1.8z\"/>", "clock": "<circle cx=\"12\" cy=\"12\" r=\"8.5\"/><path d=\"M12 7.5V12l3 2\"/>", "loop": "<path d=\"M20 12a8 8 0 1 1-2.6-5.9\"/><path d=\"M20 4v4.5h-4.5\"/>", "mail": "<rect x=\"3\" y=\"6\" width=\"18\" height=\"12\" rx=\"1.5\"/><path d=\"M3.5 7l8.5 6.5L20.5 7\"/>", "chart": "<path d=\"M3 20h18M6.5 20v-6M12 20V7M17.5 20v-9\"/>", "learn": "<path d=\"M2 9.5L12 5l10 4.5L12 14z\"/><path d=\"M6 11.5v4.5c3.5 2.2 8.5 2.2 12 0v-4.5M22 9.5v5\"/>"};
 document.querySelectorAll('[data-ic]').forEach((e,n)=>{e.dataset.n=String(n+1).padStart(2,'0');e.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">'+IC[e.dataset.ic]+'</svg>'});
 const EM={web:"🖥️",search:"🔍",link:"🔗",spark:"✨",clock:"☕",loop:"🤝",mail:"✉️",chart:"📊",learn:"🎓"};
@@ -285,4 +296,24 @@ document.querySelectorAll('.lt button').forEach(b=>b.addEventListener('click',()
 const L=LS.get('lang');if(L&&L!=='es')setTimeout(()=>setLang(L),0);
 })();
 </script><script>document.querySelectorAll('.fx-spot').forEach(b=>b.addEventListener('pointermove',e=>{const r=b.getBoundingClientRect();b.style.setProperty('--x',(e.clientX-r.left)+'px');b.style.setProperty('--y',(e.clientY-r.top)+'px')}))</script>
+<script>
+(function(){const ul=document.querySelector('ul.svc');if(!ul)return;const L=[...ul.children],det=ul.closest('details');
+const fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
+let cur=-1,pin=-1,pinY=0,hov=-1,raf=0;
+function set(n){if(n===cur)return;cur=n;L.forEach((li,k)=>li.classList.toggle('on',k===n))}
+function mag(f){L.forEach((li,k)=>{const d=Math.abs(k-f);li.style.setProperty('--m',f<0?0:d===0?1:d===1?.45:d===2?.15:0)})}
+function tick(){raf=0;if(!det.open)return;
+ if(fine){const f=pin>=0?pin:hov;mag(f);set(f);return}
+ const vh=innerHeight,c=vh*0.5,r=ul.getBoundingClientRect();
+ if(r.bottom<0||r.top>vh){set(-1);mag(-1);return}
+ let best=-1,bd=1e9;const ds=L.map((li,k)=>{const b=li.getBoundingClientRect(),d=Math.abs((b.top+Math.min(b.height,60)/2)-c);if(d<bd){bd=d;best=k}return d});
+ if(pin>=0&&Math.abs(scrollY-pinY)>120)pin=-1;
+ const f=pin>=0?pin:(cur>=0&&ds[cur]<bd+40?cur:best);mag(f);set(bd<vh*0.45||pin>=0?f:-1)}
+const q=()=>{if(!raf)raf=requestAnimationFrame(tick)};
+addEventListener('scroll',q,{passive:true});addEventListener('resize',q);det.addEventListener('toggle',q);
+L.forEach((li,k)=>{li.addEventListener('click',()=>{pin=pin===k?-1:k;pinY=scrollY;if(pin<0&&!fine)set(-1);q()});
+ if(fine)li.addEventListener('mouseenter',()=>{hov=k;q()})});
+if(fine)ul.addEventListener('mouseleave',()=>{hov=-1;q()});
+q()})();
+</script>
 </body></html>
