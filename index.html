@@ -295,7 +295,7 @@ function next(){if(!vis||document.hidden){setTimeout(next,400);return}const [cmd
  (function type(){render(cmd.slice(0,k));if(k++<cmd.length)setTimeout(type,45+Math.random()*60);else setTimeout(()=>{lines.push('<span class="p">$</span> '+esc(cmd));render('');setTimeout(()=>{lines.push('<span class="'+(res.startsWith('✓')||res.startsWith('↑')?'ok':'o')+'">'+esc(res)+'</span>');lines=lines.slice(-MAX);render();setTimeout(next,1300)},500)},350)})()}
 render();setTimeout(next,600);})();
 function setLang(l){document.documentElement.lang=l;document.querySelectorAll('[data-i]').forEach(e=>{const v=T[l][e.dataset.i];if(v!==undefined)e.innerHTML=v});document.querySelectorAll('.lt button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.lang===l)))}
-document.querySelectorAll('.lt button').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));setLang('es');
+document.querySelectorAll('.lt button').forEach(b=>b.addEventListener('click',()=>{if(document.documentElement.lang===b.dataset.lang)return;setLang(b.dataset.lang);window.drawHL&&drawHL(400)}));setLang('es');
 
 (function(){
 const LS={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
@@ -339,7 +339,7 @@ L.forEach((li,k)=>{li.addEventListener('click',()=>{
 if(fine)ul.addEventListener('mouseleave',()=>{hov=-1;q()});
 q()})();
 </script>
-<script>window.drawHL=d=>setTimeout(()=>{const h=document.documentElement;h.classList.remove('draw','drawn');void h.offsetWidth;h.classList.add('draw');setTimeout(()=>h.classList.add('drawn'),2500)},d);addEventListener('load',()=>drawHL(1500))</script>
+<script>(()=>{let t1,t2;const h=document.documentElement;window.drawHL=d=>{clearTimeout(t1);clearTimeout(t2);h.classList.remove('draw','drawn');t1=setTimeout(()=>{void h.offsetWidth;h.classList.add('draw');t2=setTimeout(()=>h.classList.add('drawn'),2500)},d)}})();addEventListener('load',()=>drawHL(1500))</script>
 <script>
 (function(){const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
 document.querySelectorAll('details.acc').forEach(d=>d.addEventListener('toggle',()=>{
