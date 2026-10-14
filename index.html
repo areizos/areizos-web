@@ -209,18 +209,18 @@ ul.svc li:first-child{border-radius:12px 12px 0 0}ul.svc li:last-child{border-ra
 @media (prefers-reduced-motion:reduce){ul.svc li>div,ul.svc li .i{transform:none!important}}
 
 /* section signatures: each plays once every time its section opens */
-ol.steps.tl{list-style:none;padding:4px 0 0;position:relative;counter-reset:st}
+ol.steps.tl{list-style:none;padding:22px 20px 18px;position:relative;counter-reset:st;background:var(--card);border-radius:12px;box-shadow:0 1px 2px rgba(40,30,10,.06),0 6px 20px rgba(40,30,10,.05)}
 ol.steps.tl li{position:relative;padding-left:42px;margin-bottom:18px;counter-increment:st}
 ol.steps.tl li:last-child{margin-bottom:4px}
-ol.steps.tl li::before{content:counter(st);position:absolute;left:0;top:1px;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font:600 12px/1 "Hanken Grotesk",sans-serif;color:var(--ink);background:var(--card);box-shadow:0 0 0 1px var(--line);transition:background .35s,color .35s,box-shadow .35s}
-ol.steps.tl::before{content:"";position:absolute;left:12.5px;top:20px;bottom:24px;width:1px;background:var(--line);transform-origin:top;transform:scaleY(var(--tl,1))}
+ol.steps.tl li::before{content:counter(st);position:absolute;left:0;top:1px;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font:600 12px/1 "Hanken Grotesk",sans-serif;color:var(--ink);background:var(--bg);box-shadow:0 0 0 1px var(--line);transition:background .35s,color .35s,box-shadow .35s}
+ol.steps.tl::before{content:"";position:absolute;left:32.5px;top:38px;bottom:46px;width:1px;background:var(--line);transform-origin:top;transform:scaleY(var(--tl,1))}
 details.play ol.steps.tl::before{animation:tl 2.4s cubic-bezier(.45,0,.55,1) both .5s}
 @keyframes tl{from{transform:scaleY(0)}to{transform:scaleY(1)}}
 details.play ol.steps.tl li::before{animation:dot .6s cubic-bezier(.34,1.56,.64,1) both}
 details.play ol.steps.tl li:nth-child(1)::before{animation-delay:.5s}
 details.play ol.steps.tl li:nth-child(2)::before{animation-delay:1.65s}
 details.play ol.steps.tl li:nth-child(3)::before{animation-delay:2.8s}
-@keyframes dot{0%{transform:scale(.4);background:var(--card)}60%{transform:scale(1.12);background:var(--ink);color:var(--bg)}100%{transform:scale(1);background:var(--card);color:var(--ink)}}
+@keyframes dot{0%{transform:scale(.4);background:var(--bg)}60%{transform:scale(1.12);background:var(--ink);color:var(--bg)}100%{transform:scale(1);background:var(--bg);color:var(--ink)}}
 .stmt .w{display:inline-block;opacity:0;filter:blur(6px);transform:translateY(4px);animation:word .6s cubic-bezier(.2,.8,.2,1) forwards}
 @keyframes word{to{opacity:1;filter:none;transform:none}}
 details.play .cta .btn{animation:rise .6s cubic-bezier(.34,1.56,.64,1) both}
