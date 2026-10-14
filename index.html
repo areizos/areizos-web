@@ -167,6 +167,28 @@ details.acc .body{overflow:visible}details.acc.anim .body,details.acc.closing .b
 @keyframes nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(4px)}}
 @media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.pleko .pa,.pleko::before,.pleko::after{animation:none!important}}
 /* copy email */
+
+/* contact buttons: same style, two hover effects to compare */
+.cta .btn{position:relative;overflow:hidden;isolation:isolate;box-shadow:0 1px 2px rgba(40,30,10,.06),0 4px 14px rgba(40,30,10,.08)!important;transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s,color .3s,border-color .3s}
+.cta .btn span{position:relative;z-index:1}
+.cta .btn:hover,.cta .btn:focus-visible{transform:translateY(-2px);box-shadow:0 2px 4px rgba(40,30,10,.08),0 10px 24px rgba(40,30,10,.14)!important}
+.cta .btn:active{transform:translateY(0) scale(.98)}
+/* A: ink fills in from the left, text flips to paper */
+.fx-fill::before{content:"";position:absolute;inset:0;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.65,0,.25,1);z-index:0}
+.fx-fill:hover::before,.fx-fill:focus-visible::before,.fx-fill:active::before{transform:scaleX(1)}
+.fx-fill:hover,.fx-fill:focus-visible,.fx-fill:active{color:var(--bg)!important;border-color:var(--ink)!important}
+/* B: soft yellow spotlight follows the cursor */
+.fx-spot::before{content:"";position:absolute;inset:0;background:radial-gradient(120px circle at var(--x,50%) var(--y,50%),var(--hi),transparent 70%);opacity:0;transition:opacity .3s;z-index:0}
+.fx-spot:hover::before,.fx-spot:focus-visible::before,.fx-spot:active::before{opacity:1}
+.fx-spot:hover,.fx-spot:focus-visible{border-color:#e6cf7f!important}
+@media (prefers-reduced-motion:reduce){.cta .btn,.fx-fill::before{transition:none}}
+
+/* LinkedIn link: ink underline draws in, arrow slides */
+.li{position:relative}
+.li::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.65,0,.25,1)}
+.li .la{display:inline-block;transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.li:hover::after,.li:focus-visible::after{transform:scaleX(1)}
+.li:hover .la,.li:focus-visible .la{transform:translateX(3px)}
 </style></head><body><svg width="0" height="0" style="position:absolute"><filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.06" numOctaves="2" seed="4"/><feDisplacementMap in="SourceGraphic" scale="1.6"/></filter></svg>
 <div class="top"><a class="logo" href="#">areïzos<span class="tld">.com</span></a><div class="lt"><button data-lang="es" aria-pressed="true">Es</button><span>/</span><button data-lang="en" aria-pressed="false">En</button></div></div>
 <button class="pill" type="button" aria-label="Menú"><span class="ar">↑</span></button>
@@ -193,24 +215,24 @@ details.acc .body{overflow:visible}details.acc.anim .body,details.acc.closing .b
 <p data-i="stmt">Más de quince años en marketing digital y tecnología.</p>
 <p class="muted" data-i="a1">He trabajado en startups, empresas SaaS y tecnológicas en Londres y Barcelona, siempre entre el marketing, los datos y las herramientas.</p>
 <p class="muted" data-i="a2">Mi trabajo se basa en procesos claros, herramientas bien elegidas y soluciones que el cliente pueda mantener.</p>
-<p><a class="li" href="https://www.linkedin.com/in/areizos" target="_blank" rel="noopener" data-i="a3">Mi trayectoria completa, en LinkedIn →</a></p>
+<p><a class="li" href="https://www.linkedin.com/in/areizos" target="_blank" rel="noopener" data-i="a3">Mi trayectoria completa, en LinkedIn <span class="la">→</span></a></p>
 <a class="pleko" href="https://pleko.es"><span><small data-i="pk0">Automatización e IA</small><span data-i="pk">Para proyectos de automatización e IA a medida, trabajo como pleko.es.</span></span><b>pleko.es <span class="pa">→</span></b></a>
 </div></details>
 <details class="acc" id="c"><summary><small>04</small><span role="heading" aria-level="2" data-i="h2d">Hablamos</span><i></i></summary><div class="body">
 <div class="card"><p data-i="c1">¿No sabes muy bien qué necesitas? Escríbeme igualmente y lo vemos.</p>
-<div class="cta"><a class="btn" href="https://wa.me/34656310631" target="_blank" rel="noopener" data-i="w1t">WhatsApp</a><a class="btn ghost" href="mailto:alex@pleko.es" data-i="w2t">Email</a></div></div></div></details>
+<div class="cta"><a class="btn ghost fx-fill" href="https://wa.me/34656310631" target="_blank" rel="noopener"><span data-i="w1t">WhatsApp</span></a><a class="btn ghost fx-spot" href="mailto:alex@pleko.es"><span data-i="w2t">Email</span></a></div></div></div></details>
 </main>
 <footer><span>© 2026 areïzos</span><nav class="soc"><a rel="me" href="https://www.linkedin.com/in/areizos">LinkedIn</a><a rel="me" href="https://areizos.substack.com">Substack</a><a rel="me" href="https://github.com/areizos">GitHub</a></nav></footer>
 <script>
 const T={es:{photo:"Tu retrato",h1:"Tu web y tus herramientas, <mark>en buenas manos</mark>.",lede:"Webs, SEO, herramientas e IA para personas y empresas. Yo me encargo de la parte técnica.",cta:"Cuéntame qué necesitas",cmd:"hola --es",menu:"Menú",h2a:"Servicios",
 m1t:"Diseño web",m1:"Una web clara, rápida y fácil de mantener.",m2t:"Que te encuentren en Google",m2:"SEO, Search Console y analítica que funciona.",m3t:"Herramientas conectadas",m3:"Email, calendario, formularios y CRM hablando entre sí.",m4t:"IA que te ahorra tiempo",m4:"Asistentes y automatizaciones que trabajan por ti.",m5t:"Una hora conmigo",m5:"Dudas, una segunda opinión o una revisión.",m6t:"Ayuda continua",m6:"Una sesión al mes y me escribes cuando te atasques.",m7t:"Dominio y email profesional",m7:"Tu dominio y un email con tu nombre, bien configurado.",m8t:"Tus números, claros",m8:"Un panel con lo que de verdad importa.",m9t:"Formación para tu equipo",m9:"Sesiones prácticas de herramientas e IA.",
 l2:"Cómo trabajo",s1t:"Hablamos",s1:"Me cuentas qué necesitas, sin compromiso.",s2t:"Te propongo algo",s2:"Corto y claro: qué, cómo y cuándo.",s3t:"Lo hago",s3:"Me encargo yo, o lo hacemos juntos si quieres aprender.",
-l3:"Sobre mí",stmt:"Más de quince años en marketing digital y tecnología.",a1:"He trabajado en startups, empresas SaaS y tecnológicas en Londres y Barcelona, siempre entre el marketing, los datos y las herramientas.",a2:"Mi trabajo se basa en procesos claros, herramientas bien elegidas y soluciones que el cliente pueda mantener.",a3:"Mi trayectoria completa, en LinkedIn →",by:"Marketing digital y tecnología",pk0:"Automatización e IA",pk:"Para proyectos de automatización e IA a medida, trabajo como pleko.es.",q:"Me gusta que la tecnología trabaje para las personas, no al revés.",
+l3:"Sobre mí",stmt:"Más de quince años en marketing digital y tecnología.",a1:"He trabajado en startups, empresas SaaS y tecnológicas en Londres y Barcelona, siempre entre el marketing, los datos y las herramientas.",a2:"Mi trabajo se basa en procesos claros, herramientas bien elegidas y soluciones que el cliente pueda mantener.",a3:"Mi trayectoria completa, en LinkedIn <span class=\"la\">→</span>",by:"Marketing digital y tecnología",pk0:"Automatización e IA",pk:"Para proyectos de automatización e IA a medida, trabajo como pleko.es.",q:"Me gusta que la tecnología trabaje para las personas, no al revés.",
 h2d:"Hablamos",c1:"¿No sabes muy bien qué necesitas? Escríbeme igualmente y lo vemos.",w1t:"WhatsApp",w2t:"Email"},
 en:{photo:"Your portrait",h1:"Your website and your tools, <mark>in good hands</mark>.",lede:"Websites, SEO, tools and AI for people and companies. I take care of the technical side.",cta:"Tell me what you need",cmd:"hello --en",menu:"Menu",h2a:"Services",
 m1t:"Websites",m1:"A clear, fast site that's easy to keep up.",m2t:"Getting found on Google",m2:"SEO, Search Console and analytics that work.",m3t:"Tools, connected",m3:"Email, calendar, forms and CRM talking to each other.",m4t:"AI that saves you time",m4:"Assistants and automations that work for you.",m5t:"An hour with me",m5:"Questions, a second opinion or a review.",m6t:"Ongoing help",m6:"A monthly session, and message me when you get stuck.",m7t:"Domain and business email",m7:"Your domain and an email with your name, set up properly.",m8t:"Your numbers, clear",m8:"A dashboard with what really matters.",m9t:"Training for your team",m9:"Hands-on sessions on tools and AI.",
 l2:"How I work",s1t:"We talk",s1:"You tell me what you need, no strings attached.",s2t:"I send a proposal",s2:"Short and clear: what, how and when.",s3t:"I get it done",s3:"I do it for you, or we do it together if you want to learn.",
-l3:"About",stmt:"Over fifteen years in digital marketing and technology.",a1:"I have worked in startups, SaaS and technology companies in London and Barcelona, always between marketing, data and tools.",a2:"My work is built on clear processes, well-chosen tools and solutions clients can maintain themselves.",a3:"My full background is on LinkedIn →",by:"Digital marketing and technology",pk0:"Automation and AI",pk:"For custom automation and AI projects, I work as pleko.es.",q:"I like technology that works for people, not the other way round.",
+l3:"About",stmt:"Over fifteen years in digital marketing and technology.",a1:"I have worked in startups, SaaS and technology companies in London and Barcelona, always between marketing, data and tools.",a2:"My work is built on clear processes, well-chosen tools and solutions clients can maintain themselves.",a3:"My full background is on LinkedIn <span class=\"la\">→</span>",by:"Digital marketing and technology",pk0:"Automation and AI",pk:"For custom automation and AI projects, I work as pleko.es.",q:"I like technology that works for people, not the other way round.",
 h2d:"Let's talk",c1:"Not sure what you need? Write to me anyway and we'll work it out.",w1t:"WhatsApp",w2t:"Email"}};
 const IC={"web": "<rect x=\"3\" y=\"5\" width=\"18\" height=\"14\" rx=\"2\"/><path d=\"M3 9h18M6 7h.01M8.5 7h.01\"/>", "search": "<circle cx=\"10.5\" cy=\"10.5\" r=\"6\"/><path d=\"M15 15l5.5 5.5\"/>", "link": "<circle cx=\"6\" cy=\"12\" r=\"2.5\"/><circle cx=\"18\" cy=\"6\" r=\"2.5\"/><circle cx=\"18\" cy=\"18\" r=\"2.5\"/><path d=\"M8.2 10.9l7.6-3.8M8.2 13.1l7.6 3.8\"/>", "spark": "<path d=\"M12 3l1.8 7.2L21 12l-7.2 1.8L12 21l-1.8-7.2L3 12l7.2-1.8z\"/>", "clock": "<circle cx=\"12\" cy=\"12\" r=\"8.5\"/><path d=\"M12 7.5V12l3 2\"/>", "loop": "<path d=\"M20 12a8 8 0 1 1-2.6-5.9\"/><path d=\"M20 4v4.5h-4.5\"/>", "mail": "<rect x=\"3\" y=\"6\" width=\"18\" height=\"12\" rx=\"1.5\"/><path d=\"M3.5 7l8.5 6.5L20.5 7\"/>", "chart": "<path d=\"M3 20h18M6.5 20v-6M12 20V7M17.5 20v-9\"/>", "learn": "<path d=\"M2 9.5L12 5l10 4.5L12 14z\"/><path d=\"M6 11.5v4.5c3.5 2.2 8.5 2.2 12 0v-4.5M22 9.5v5\"/>"};
 document.querySelectorAll('[data-ic]').forEach((e,n)=>{e.dataset.n=String(n+1).padStart(2,'0');e.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">'+IC[e.dataset.ic]+'</svg>'});
@@ -264,4 +286,5 @@ document.querySelectorAll('.btn,.pill,.lt button,.pleko,.soc a').forEach(b=>b.ad
 document.querySelectorAll('.lt button').forEach(b=>b.addEventListener('click',()=>LS.set('lang',b.dataset.lang)));
 const L=LS.get('lang');if(L&&L!=='es')setTimeout(()=>setLang(L),0);
 })();
-</script></body></html>
+</script><script>document.querySelectorAll('.fx-spot').forEach(b=>b.addEventListener('pointermove',e=>{const r=b.getBoundingClientRect();b.style.setProperty('--x',(e.clientX-r.left)+'px');b.style.setProperty('--y',(e.clientY-r.top)+'px')}))</script>
+</body></html>
