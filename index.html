@@ -148,13 +148,16 @@ details.acc summary.stuck i{opacity:0}
 ::selection{background:#fbe39a;color:#26251f}
 /* accordion anim */
 details.acc summary i:after{transition:transform .3s cubic-bezier(.2,.8,.2,1)!important}
-details.acc .body{overflow:hidden}
+details.acc .body{overflow:visible}details.acc.anim .body,details.acc.closing .body{overflow:hidden}
 /* reveals */
 .rv{opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s cubic-bezier(.2,.8,.2,1)}
 .rv.in{opacity:1;transform:none}
 .pleko,.pleko.rv{transition:opacity .5s ease,transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .25s ease}
 .pleko.rv.in:hover,.pleko.rv.in:focus-visible,.pleko.rv.in:active{transform:translateY(-1px);box-shadow:0 0 0 1px var(--mint),0 0 0 5px rgba(143,246,208,.35),0 10px 30px rgba(0,101,101,.18);outline:none}
-@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+.pleko .pa{display:inline-block}
+.pleko:hover .pa,.pleko:focus-visible .pa{animation:nudge 1s ease-in-out infinite}
+@keyframes nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(4px)}}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.pleko .pa{animation:none!important}}
 /* copy email */
 </style></head><body><svg width="0" height="0" style="position:absolute"><filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.06" numOctaves="2" seed="4"/><feDisplacementMap in="SourceGraphic" scale="1.6"/></filter></svg>
 <div class="top"><a class="logo" href="#">areïzos<span class="tld">.com</span></a><div class="lt"><button data-lang="es" aria-pressed="true">Es</button><span>/</span><button data-lang="en" aria-pressed="false">En</button></div></div>
@@ -183,7 +186,7 @@ details.acc .body{overflow:hidden}
 <p class="muted" data-i="a1">He trabajado en startups, empresas SaaS y tecnológicas en Londres y Barcelona, siempre entre el marketing, los datos y las herramientas.</p>
 <p class="muted" data-i="a2">Mi trabajo se basa en procesos claros, herramientas bien elegidas y soluciones que el cliente pueda mantener.</p>
 <p><a class="li" href="https://www.linkedin.com/in/areizos" target="_blank" rel="noopener" data-i="a3">Mi trayectoria completa, en LinkedIn →</a></p>
-<a class="pleko" href="https://pleko.es"><span><small data-i="pk0">Automatización e IA</small><span data-i="pk">Para proyectos de automatización e IA a medida, trabajo como pleko.es.</span></span><b>pleko.es →</b></a>
+<a class="pleko" href="https://pleko.es"><span><small data-i="pk0">Automatización e IA</small><span data-i="pk">Para proyectos de automatización e IA a medida, trabajo como pleko.es.</span></span><b>pleko.es <span class="pa">→</span></b></a>
 </div></details>
 <details class="acc" id="c"><summary><small>04</small><span role="heading" aria-level="2" data-i="h2d">Hablamos</span><i></i></summary><div class="body">
 <div class="card"><p data-i="c1">¿No sabes muy bien qué necesitas? Escríbeme igualmente y lo vemos.</p>
@@ -241,7 +244,7 @@ D.forEach(d=>{const sm=d.querySelector('summary'),body=d.querySelector('.body');
    body.animate([{height:h+'px',opacity:1},{height:'0px',opacity:0}],{duration:280,easing:'cubic-bezier(.2,.8,.2,1)'}).onfinish=()=>{d.open=false;d.classList.remove('closing');save()};
    d.querySelector('summary i').style.setProperty('--x','1');
   }else{d.open=true;const h=body.offsetHeight;
-   body.animate([{height:'0px',opacity:0},{height:h+'px',opacity:1}],{duration:320,easing:'cubic-bezier(.2,.8,.2,1)'});save();
+   d.classList.add('anim');body.animate([{height:'0px',opacity:0},{height:h+'px',opacity:1}],{duration:320,easing:'cubic-bezier(.2,.8,.2,1)'}).onfinish=()=>d.classList.remove('anim');save();
    d.querySelectorAll('.rv:not(.in)').forEach(io.observe.bind(io));}
  });});
 // reveals
