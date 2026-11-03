@@ -13,8 +13,8 @@ ROOT = Path(__file__).resolve().parent.parent
 SWAPS = [
     ('<!doctype html><html lang="es">',
      '<!doctype html><!-- Generated from /index.html by scripts/build-en.py. Edit index.html, not this file. --><html lang="en">'),
-    ('<meta name="description" content="Alexandros Reïzos: diseño web, optimización y estrategia de marketing digital para tu negocio. Más de quince años de experiencia.">',
-     '<meta name="description" content="Alexandros Reïzos: web design, optimisation and digital marketing strategy for your business. Over fifteen years of experience.">'),
+    ('<meta name="description" content="Alexandros Reïzos: diseño web, optimización y estrategia de marketing digital para tu negocio. Más de veinte años de experiencia.">',
+     '<meta name="description" content="Alexandros Reïzos: web design, optimisation and digital marketing strategy for your business. Over twenty years of experience.">'),
     ('<link rel="canonical" href="https://areizos.com/">',
      '<link rel="canonical" href="https://areizos.com/en/">'),
     ('<meta property="og:url" content="https://areizos.com/">',
